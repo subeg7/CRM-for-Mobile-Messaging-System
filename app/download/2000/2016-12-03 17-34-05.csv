@@ -1,0 +1,99 @@
+Client ID,Group/Feature,User,Reseller,Contact Person,Contact No.,Balance,Country,Status
+2010,Client[Api],isme, inter national society for medical education pvt. ltd,easy-reseller,poja thapa,9801023355,NTC : 38137 AXIATA : 68346,NP,Offline
+2020,Reseller[Api][Pullroute][Avoid],easy-reseller,easy service pvt. ltd.,Easy Reseller,00000,POSTPAID,NP,Online
+2030,Client,easy-client,easy-reseller,Easy Client,,AXIATA : 4000 NTC : 581,NP,Offline
+2040,Client[Api][Pullroute],easy-api,easy-reseller,Easy Api,,NTC : 468 AXIATA : 7,NP,Offline
+2050,Client,shraman apparels,easy-reseller,ramesh shakya,9851078594,NTC : 931 AXIATA : 443,NP,Offline
+2060,Client[Api],initiative nepal pvt. ltd.,easy-reseller,udaya raj shiwakoti,9851096919,NTC : 59221 AXIATA : 20269,NP,Offline
+2070,Client,narcotics crime bureau,easy-reseller,Narcotics Control Bureau,9851127427,NTC : 273 AXIATA : 688,NP,Offline
+2080,Client[Api],nepadristi private limited,easy-reseller,dependra thapaliya,9808039391,NTC : 3749 AXIATA : 6597,NP,Offline
+2090,Client[Api],eol pvt. ltd.,easy-reseller,dhurba joshi,9841614319,NTC : 20188 AXIATA : 30157,NP,Offline
+2100,Client[Api],electronics concern & research center private limited,easy-reseller,Electronics Concern & Research Center Pvt. Ltd.,,NTC : 2496 AXIATA : 2500,NP,Offline
+2110,Client[Api][Avoid],muktinath bikas bank limited ,easy-reseller,ram lamichane,9856033584,NTC : 68961 AXIATA : 65878,NP,Offline
+2120,Client[Api],idea-api,easy-reseller,ishwor palikhel,9802248388,NTC : 606942 AXIATA : 212116,NP,Offline
+2130,Client,silkroad investment & trading pvt. ltd.,easy-reseller,amar buda,9851004802,NTC : 561 AXIATA : 1016,NP,Offline
+2140,Client,eg school,easy-reseller,EG School,,NTC : 99 AXIATA : 100,NP,Offline
+2150,Client,ndbs,easy-reseller,NDBS,9841602326,NTC : 340 AXIATA : 1039,NP,Offline
+2160,Client[Api],neco insurance,easy-reseller,Gajan shrestha,9841258943,NTC : 1025 AXIATA : 187,NP,Offline
+2170,Client[Api],e-prima technology pvt. ltd.,easy service pvt. ltd.,Dp. pandit,9851004988,NTC : 51105 AXIATA : 60470,NP,Offline
+2180,Client, i. quest technologies pvt. ltd,easy-reseller,santosh dangol,9851111307,NTC : 24 AXIATA : 808,NP,Offline
+2190,Client,medhavi college,easy-reseller,jayram khanal,9841481360,NTC : 184 AXIATA : 399,NP,Offline
+2200,Client,excel international college,easy-reseller,pradip raj baral,9843312022,NTC : 1957 AXIATA : 3064,NP,Offline
+2210,Client,kanjirowa national h.s. school,easy-reseller,Kanjirowa National H.S. School,9849149724,NTC : 358 AXIATA : 1098,NP,Offline
+2220,Client,kathmandu don bosco college,easy-reseller,madhuri maam,,NTC : 1915 AXIATA : 41,NP,Offline
+2230,Client,ace higher secondary school,easy-reseller,bishnu dhakal,9841259540,AXIATA : 16795 NTC : 14149,NP,Offline
+2240,Client,district agriculture development office parbat,easy-reseller,District Agriculture Development Office Parbat,9840010122,AXIATA : 592 NTC : 292,NP,Offline
+2250,Client,basanta trade  concern,easy-reseller,rabi poudel,9856021151,NTC : 1101 AXIATA : 720,NP,Offline
+2260,Client,hamro saving and credit cooperative society limited,easy-reseller,Hamro Savings and Credit Cooperative Society Limit,9842088691,NTC : 67 AXIATA : 277,NP,Offline
+2270,Client[Api],miracle infocom private limited,easy-reseller,sunita lama,9849178006,NTC : 975 AXIATA : 1238,NP,Offline
+2280,Client[Api],guru infosys private limited,easy-reseller,Guru Infosys Private Limited,9851169744,NTC : 0 AXIATA : 0,NP,Offline
+2290,Client[Api],sasto sms private limited,easy-reseller,ps. pokhrel,9802071810,NTC : 8877 AXIATA : 15192,NP,Offline
+2300,Client[Api],arya technology private limited,easy-reseller,rupesh kumar sah,9851074254,NTC : 79831 AXIATA : 38229,NP,Offline
+2310,Client,allied media network private limited,easy-reseller,roshan khatiwada,9801127497,AXIATA : 311 NTC : 401,NP,Offline
+2320,Client,district forest  office khusma,easy-reseller,District Forest  Office Khusma,9840010122,NTC : 63 AXIATA : 700,NP,Offline
+2330,Client,master id private limited,easy-reseller,indra rijal,9851009168,NTC : 0 AXIATA : 0,NP,Offline
+2340,Client,nepal police,easy-reseller,Rana Bahadur Chand,9851155467,NTC : 3441 AXIATA : 2861,NP,Offline
+2350,Client,ace institute of management,easy-reseller,sarmila maam,9841319395,NTC : 7931 AXIATA : 8157,NP,Offline
+2360,Client,civil service hospital,easy-reseller,kanchan raj ,9841263777,NTC : 38 AXIATA : 2001,NP,Offline
+2370,Client[Api],softlab inc,easy-reseller,kushal sir,9849165585,NTC : 27592 AXIATA : 11303,NP,Offline
+2380,Reseller,master id pvt.ltd.,easy service pvt. ltd.,indra rijal,9851009168,App.: 9 NTC : 0 AXIATA : 0,NP,Offline
+2390,Client,master id private limited,master id pvt.ltd.,indra rijal,9851009168,NTC : 58 AXIATA : 1310,NP,Offline
+2400,Client,nepal group of companies pvt. ltd.,easy-reseller,rirajan shah,9802826918,NTC : 1586 AXIATA : 2635,NP,Offline
+2410,Client,new patan opticals,easy-reseller,shahamat boki,9841355779,NTC : 0 AXIATA : 0,NP,Offline
+2420,Client,himalayan valley secondary boarding school,easy-reseller,rabi pandit,9849780251,NTC : 1241 AXIATA : 2249,NP,Offline
+2430,Reseller,soham trade and center,easy service pvt. ltd.,Soham Trade and Center,9848427993,App.: 3 NTC : 200 AXIATA : 50,NP,Offline
+2440,Client,nepalgunj gold & silver dealer's association,soham trade and center,Nepalgunj Gold & Silver Dealer's Association,00000,NTC : 5723 AXIATA : 5993,NP,Offline
+2450,Client,soham trade & center,soham trade and center,Soham Trade & Center,9848427993,AXIATA : 47 NTC : 51,NP,Offline
+2460,Client,ashirbad paints pvt ltd.,soham trade and center,Ashirbad Paints Pvt. Ltd.,9858029131,NTC : 2262 AXIATA : 2490,NP,Offline
+2470,Client[Api],guru infosys(default),easy-reseller,susil sapkota,9851169744,NTC : 16820 AXIATA : 1860,NP,Offline
+2480,Client[Api],synergy tech software,easy-reseller,devendra khadka,9841358015,NTC : 26268 AXIATA : 39241,NP,Offline
+2490,Client[Api],the connect plus private limited,easy-reseller,swagat shrestha,9851038789,NTC : 10572 AXIATA : 2674,NP,Offline
+2500,Client,khandbari municipality office,easy-reseller,dinesh kattel,9851147610,NTC : 948 AXIATA : 987,NP,Offline
+2510,Client,strikesales,easy-reseller,subam thapa,9806554191,NTC : 39 AXIATA : 27,NP,Offline
+2520,Client,banke bageshori college b.sc. csit,soham trade and center,Banke Bageshori College B.Sc. CSIT,9858028333,NTC : 4883 AXIATA : 569,NP,Offline
+2530,Client,junior police officer college,easy-reseller,dines kunwal,9855090888,NTC : 979 AXIATA : 992,NP,Offline
+2540,Client,nepal police,easy-reseller,Jay Bahadur Chand,9851105835,NTC : 2000 AXIATA : 2000,NP,Offline
+2550,Client,gokarneshwor light academy,easy-reseller,chiranjivi nepal,9851031172,NTC : 439 AXIATA : 894,NP,Offline
+2560,Client,teachers service commission,easy-reseller,tsc,9851064283,-----,NP,Offline
+2570,Client,the institute of chartered accountants of nepal,easy-reseller,binod neupane,9851001888,NTC : 7110 AXIATA : 841,NP,Offline
+2580,Client,triton international college,easy-reseller,shree krishna bista,9802966636,NTC : 860 AXIATA : 239,NP,Offline
+2590,Client[Api],easy-demo2,easy-reseller,easy,000000,NTC : 7 AXIATA : 10,NP,Offline
+2600,Client[Api],ace higher secondary school,easy-reseller,bishnu dhakal,9841259540,NTC : 17 AXIATA : 25,NP,Offline
+2610,Client,greenwich international education pvt ltd,easy-reseller,rajesh chapagain,9841372964,NTC : 344 AXIATA : 571,NP,Offline
+2620,Client[Api],ims investment management services private limited,easy-reseller,Share Sansar,9818484124,NTC : 820 AXIATA : 456,NP,Offline
+2630,Client,zenith education promotion private limited,easy-reseller,tika bohora,9851206134,NTC : 1215 AXIATA : 3022,NP,Offline
+2640,Client,chitwan medical college,easy-reseller,pradip kumar chaudhari,9802955186,NTC : 2328 AXIATA : 1048,NP,Offline
+2650,Client[Api],advance systems pvt. ltd.,easy-reseller,Abshiek podder,9851068798,NTC : 85 AXIATA : 105,NP,Offline
+2660,Reseller,supreme it solution pvt. ltd.,easy service pvt. ltd.,supreme it,9481614319,NTC : 2801 AXIATA : 476 App.: 93,NP,Offline
+2670,Client,ncda bagmati ,supreme it solution pvt. ltd.,ncda bagmati,,NTC : 3258 AXIATA : 7408,NP,Offline
+2680,Client,ncda central,supreme it solution pvt. ltd.,ncda central,,NTC : 1430 AXIATA : 1979,NP,Offline
+2690,Client,nimbus hr solutions pvt.ltd.,supreme it solution pvt. ltd.,nimbus hr solutions,00000,NTC : 3000 AXIATA : 873,NP,Offline
+2700,Client,suprem it solution pvt. ltd.,supreme it solution pvt. ltd.,user,00000,NTC : 1495 AXIATA : 668,NP,Offline
+2710,Client[Api],mobile track pvt. ltd.,easy-reseller,ambika prasad,9841840315,NTC : 1496 AXIATA : 503,NP,Offline
+2720,Client,care nepal,supreme it solution pvt. ltd.,Care Nepal,00000,NTC : 4095 AXIATA : 3500,NP,Offline
+2730,Reseller,the institute of chartered accountants of nepal,easy service pvt. ltd.,binod neupane,9851001888,App.: 4 NTC : 925 AXIATA : 938,NP,Offline
+2740,Client,the institute of chartered accountants of nepal,the institute of chartered accountants of nepal,Member Department,,AXIATA : 12 NTC : 9,NP,Offline
+2750,Client,the institute of chartered accountants of nepal,the institute of chartered accountants of nepal,Education Department,,NTC : 2 AXIATA : 0,NP,Offline
+2760,Client,sudur paschim bidhyalaya,easy-reseller,subash sahi,9858422452,NTC : 1361 AXIATA : 704,NP,Offline
+2770,Client,ican,the institute of chartered accountants of nepal,Exam Dept.,9851002888,NTC : 35 AXIATA : 45,NP,Offline
+2780,Client,dreamland,supreme it solution pvt. ltd.,Dreamland Gold Resort,9841614319,NTC : 3786 AXIATA : 1470,NP,Offline
+2790,Client,ngmc,supreme it solution pvt. ltd.,Nepalgunj Medical College,00000,AXIATA : 1500 NTC : 1500,NP,Offline
+2800,Client,gokarna saving and credit co-operative ltd,easy-reseller,roshan shrestha,9851116334,NTC : 322 AXIATA : 150,NP,Offline
+2810,Client,sagarmatha engineering college,easy-reseller,dinesh shrestha,9841373414,NTC : 531 AXIATA : 394,NP,Offline
+2820,Client[Api],saipal technologies private limited,easy-reseller,pankaj adhikari,9851087175,NTC : 2848 AXIATA : 2008,NP,Offline
+2830,Client,orbit mbbs,easy-reseller,sunil regmi,00000,AXIATA : 990 NTC : 1989,NP,Offline
+2840,Client,DN international,supreme it solution pvt. ltd.,dhurba joshi,00000,NTC : 5 AXIATA : 5,NP,Offline
+2850,Client,pearl hr pvt. ltd.,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2860,Client,pioneer,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2870,Client,eim,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2880,Client,google overseas,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2890,Client,nca,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2900,Client,balaji,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2910,Client,kandyy.com,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2920,Client,mangalam,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2930,Client,deluxe hr solutions,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2940,Client,umbrella,supreme it solution pvt. ltd.,dhurba,00000,-----,NP,Offline
+2950,Reseller,Idea inc. pvt. ltd.,easy service pvt. ltd.,Ishwor palikhel ,9802248388,-----,NP,Offline
+2960,Client[Api],easy-demo,easy-reseller,easy,0000000,-----,NP,Offline
+2970,Client[Api],easy-demo1,easy-reseller,easy,0000000,-----,NP,Offline
+2980,Reseller,Easy 2,easy service pvt. ltd.,Narendra Bahadur Chand,9851146332,POSTPAID,NP,Offline
