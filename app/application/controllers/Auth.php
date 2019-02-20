@@ -12,7 +12,7 @@ class Auth extends CI_Controller {
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
-		$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']); 
+		$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']);
 	}
 
 	// redirect if needed, otherwise display the user list
@@ -31,8 +31,8 @@ class Auth extends CI_Controller {
 			// print("user has logged in");
 			// return;
 			//$verify = $this->vas->veryfy_url();
-			
-			//$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']); 
+
+			//$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']);
 
 			// print("point 1");
 				// return;
@@ -44,7 +44,7 @@ class Auth extends CI_Controller {
 				$this->data['isLogin'] = FALSE;
 				$logout = $this->ion_auth->logout();
 				$this->_render_page('auth/login', $this->data);
-				
+
 			}else{
 				$verify = $this->vas->veryfy_url($this->session->userdata('userId'));
 				// print("user has logged in");
@@ -64,9 +64,9 @@ class Auth extends CI_Controller {
 					$this->data['hostName'] = ($this->vas->domain_name!=NULL)? $this->vas->domain_name:'Easy SMS Service';
 					$this->data['ribbon'] = $this->vas->gen_Ribbon();
 					$this->data['toolbar'] = $this->vas->gen_Toolbar();
-					$this->data['isAdmin'] = ($this->session->userdata('userId')==1)?'admin':'none'; 
+					$this->data['isAdmin'] = ($this->session->userdata('userId')==1)?'admin':'none';
 					$this->data['priv'] =  $this->vas->getUserPrivileges();
-					
+
 					$this->_render_page('auth/index', $this->data);
 				}
 			}
@@ -96,18 +96,18 @@ class Auth extends CI_Controller {
 			// print("calling auth_login");
 			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
 			{
-				//if the login is successful			
-				// print("login success");	
+				//if the login is successful
+				// print("login success");
 				$this->vas->setSessionUserData();
 				// print("vasdata:"+$this->vas->s);
-				// return;	
+				// return;
 				redirect('/', 'refresh');
 			}
 			else
 			{
 				// if the login was un-successful
 				// redirect them back to the login page
-				print("loign failed!!!");	
+				print("loign failed!!!");
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
 				redirect('login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
@@ -121,7 +121,7 @@ class Auth extends CI_Controller {
 			else
 				$this->data['message'] = 'Logout Sucessfully';
 			$this->data['isLogin'] = FALSE;
-			$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']); 
+			$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']);
 			$this->_render_page('auth/login', $this->data);
 		}
 	}

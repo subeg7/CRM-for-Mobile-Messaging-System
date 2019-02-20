@@ -4,7 +4,7 @@
 class Vas
 {
 	public $domain_name = NULL;
-	
+
 	public function __construct()
 	{
 		$this->load->model(array('curd_m'));
@@ -14,28 +14,28 @@ class Vas
 	{
 		return get_instance()->$var;
 	}
-	/*There are many dthmlx component has been used in front end and to show alert session end this function helps 
+	/*There are many dthmlx component has been used in front end and to show alert session end this function helps
 	different component according to their defined format.
 	*/
 	public function expire_message($obj,$type='expire',$msg = NULL){
-		if( $obj==='window' || $obj==='load'){	
+		if( $obj==='window' || $obj==='load'){
 			if($type=='expire')
 				die('<div><script type="text/javascript"> obj.session_expire("'.$type.'");</script></div>');
-			elseif($type=='disable')	
-				die('<div><script type="text/javascript"> obj.session_expire("'.$type.'");</script></div>');	
-			elseif($type=='data')	
-				die('<div><script type="text/javascript"> obj.message_show("'.$msg.'","error");</script></div>');					
+			elseif($type=='disable')
+				die('<div><script type="text/javascript"> obj.session_expire("'.$type.'");</script></div>');
+			elseif($type=='data')
+				die('<div><script type="text/javascript"> obj.message_show("'.$msg.'","error");</script></div>');
 		}
-		elseif( $obj==='grid' ){	
+		elseif( $obj==='grid' ){
 			header("Content-Type:text/xml");
 			if($type=='expire')
-			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">expire</userdata></rows>');	
-			elseif($type=='disable')	
-			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">disable</userdata></rows>');	
-			elseif($type=='message')	
-			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">message</userdata><userdata name="message">'.htmlspecialchars($msg).'</userdata></rows>');			
+			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">expire</userdata></rows>');
+			elseif($type=='disable')
+			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">disable</userdata></rows>');
+			elseif($type=='message')
+			die('<?xml version="1.0" encoding="iso-8859-1" ?><rows><userdata name="session">message</userdata><userdata name="message">'.htmlspecialchars($msg).'</userdata></rows>');
 		}
-		elseif( $obj==='tree' ){	
+		elseif( $obj==='tree' ){
 			header("Content-type: text/xml");
 			if($type=='expire'){
 				die('<?xml version="1.0" encoding="iso-8859-1" ?><tree id="0" radio="1">
@@ -44,14 +44,14 @@ class Vas
 			elseif($type=='disable'){
 				die('<?xml version="1.0" encoding="iso-8859-1" ?><tree id="0" radio="1">
 				<item text="Lists" id="session" open="1"><userdata name="session">disable</userdata></item></tree>');
-			}	
+			}
 
 		}
 		elseif( $obj==='ajax' ){
 			die('expire');
 		}
 	}
-	/* return all the users assigned privileges 
+	/* return all the users assigned privileges
 	*/
 	public function getUserPrivileges($id=NULL){
 		$userId = ($id==NULL)? $this->session->userdata('userId'):$id;
@@ -65,10 +65,10 @@ class Vas
 			}
 			foreach ($res as $row){	$priv[] = $row->fld_privileges;	}
 		   	return $priv;
-		} 
+		}
 		return FALSE;
 	}
-	
+
 	public function getGroupPrivileges($id){
 		$res = $this->curd_m->get_search("SELECT fld_privileges FROM group_privileges WHERE fld_group_id=".$id,'object');
 		if($res!==NULL){
@@ -87,29 +87,29 @@ class Vas
 	public function checkPriviDependency($assignPriv){
 		$this->config->load('easy_priv');
 		$depnPriv = $this->config->item('DEPENDENT_PRIV');
-		
+
 		foreach( $assignPriv as $val){
 			if(isset($depnPriv[$val])){
 				if( strpos($depnPriv[$val], '|') ===FALSE){
 					if(!in_array($depnPriv[$val],$assignPriv)){
-						return '** Dependency ERROR :'. $val.' Privileges required '.$depnPriv[$val] .' Privileges'; 
+						return '** Dependency ERROR :'. $val.' Privileges required '.$depnPriv[$val] .' Privileges';
 					}
 				}
 				else{
 					$priv = explode('|',$depnPriv[$val]);
 					foreach($priv as $val1){
 						if(in_array(str_replace(' ', '', $val1),$assignPriv)){
-							return TRUE; 
+							return TRUE;
 						}
 					}
 					return '** Dependency ERROR :'. $val.' Privileges required '.implode('|',$priv) .' Privileges';
 					/*if(!in_array(trim($privD[0]),$assignPriv) && !in_array(trim($privD[1]),$assignPriv)){
-						return '** Dependency ERROR :'. $val.' Privileges required '.$depnPriv[$val] .' Privileges'; 
+						return '** Dependency ERROR :'. $val.' Privileges required '.$depnPriv[$val] .' Privileges';
 					}*/
 				}
 			}
 		}
-		
+
 		return TRUE;
 	}
 	public function checkCLosePrivileges($priv){
@@ -119,9 +119,9 @@ class Vas
 			if(isset($closePriv[$val])){
 				if( strpos($closePriv[$val], '|') ===FALSE){
 					if(!in_array($closePriv[$val],$priv)){
-						return '** Closed Privileges ERROR ERROR :'. $val.' Privileges cannot have '.$closePriv[$val] .' Privileges'; 
+						return '** Closed Privileges ERROR ERROR :'. $val.' Privileges cannot have '.$closePriv[$val] .' Privileges';
 					}
-					
+
 				}
 				else{
 					$clPriv = explode('|',$closePriv[$val]);
@@ -161,12 +161,12 @@ class Vas
 		return TRUE;
 	}
 	/*
-	adding extra data to session for future use 
+	adding extra data to session for future use
 	*/
 	public function setSessionUserData(){
 		$data = array();
 		$res = $this->curd_m->get_search("SELECT u.fld_balance_type AS balanceType,u.fld_reseller_id AS fld_reseller_id, g.group_id AS group_id, r.name AS name  FROM users u INNER JOIN users_groups g INNER JOIN groups r WHERE u.id=".$this->session->userdata('userId')." AND u.id = g.user_id AND g.group_id=r.id ",'object');
-		
+
 		if($res!==NULL && sizeof($res)==1){
 			$data['reseller'] = $res[0]->fld_reseller_id;
 			$data['gname'] = $res[0]->name;
@@ -186,10 +186,10 @@ class Vas
 		}
 		$this->session->set_userdata($data);
 		return TRUE;
-		
-		
+
+
 	}
-	// check if the user is loged in or not 
+	// check if the user is loged in or not
 	// returns bool , TRUE OR FALSE
 	public function logged_in()
 	{
@@ -197,7 +197,7 @@ class Vas
 	}
 	/*This function verifies of the user has particular privileges or not
 	*/
-	public function verifyPrivillages($priv,$userPriv){	
+	public function verifyPrivillages($priv,$userPriv){
 		if(is_array($priv)){
 			foreach($priv as $val){
 				if(in_array($val , $userPriv)) return TRUE;
@@ -208,6 +208,7 @@ class Vas
 		return FALSE;
 	}
 	public function checkLoginStat(){
+                   // print("checking login stat..................."."<br>");
 		$res = $this->curd_m->get_search('SELECT * FROM system_flag WHERE fld_type="login"','object');
 		if($res ==NULL) return TRUE;
 		else{
@@ -217,7 +218,7 @@ class Vas
 	/*This function generates the dhtmlx ribbon json format according to user assigned privileges
 	*/
 	public function gen_Ribbon(){
-		
+
 		$userPriv = $this->getUserPrivileges();
 		$ribbon = '[';
 		if($this->verifyPrivillages('PUSH',$userPriv)){//sms tab
@@ -243,7 +244,7 @@ class Vas
 		}
 		// usermanage tab
 		if($this->verifyPrivillages(array('USER_MANAGE'),$userPriv)){
-			
+
 			$ribbon= $ribbon.'{id: "users", text: "Users", items: [
 					{type: "block", text: "Users",text_pos: "bottom", mode: "cols", list: [
 						{type: "button", id:"userList", text: "Users List" , isbig: true, img: "/users.png"},
@@ -252,17 +253,17 @@ class Vas
 							{value: "0", text: "Suspended Clients"}
 						]},
 						{type: "button", id:"gen_exl_list", text: "Generate EXCEL" , img: "/excel.png"},
-						
+
 					]},';
-		
+
 			$ribbon= $ribbon.'{type: "block", text: "add/remove & report",text_pos: "bottom", mode: "cols", list: [
 					{type: "button", id:"cl_sms_tran", text: "Client Transaction Report",  img: "/transaction.png"},
-					{type: "button", id:"addBal", text: "Add/remove Balance",  img: "/balance.png"},				
+					{type: "button", id:"addBal", text: "Add/remove Balance",  img: "/balance.png"},
 					{type: "button", id:"rst_pass", text: "Password Reset" , img: "/reset.png"},
 				]},';
-		
+
 			$ribbon= $ribbon.'{type: "block", text: "assign",text_pos: "bottom", mode: "cols", list: [';
-			$ribbon= $ribbon.'{type: "button", id:"assignshortcode", text: "Assign ShortCode" , img: "/assignshortcode.png"},';	
+			$ribbon= $ribbon.'{type: "button", id:"assignshortcode", text: "Assign ShortCode" , img: "/assignshortcode.png"},';
 			$ribbon= $ribbon.'{type: "button", id:"assigngateway", text: "Assign Gateway" , img: "/assigngateway.png"},';
 			$ribbon= $ribbon.'{type: "button", id:"assignfeature", text: "Assign Feature" , img: "/features.png"},';
 			$ribbon= $ribbon.']},';
@@ -271,7 +272,7 @@ class Vas
 		// push tab
 		if($this->verifyPrivillages(array('PUSH','USER_MANAGE'),$userPriv)){
 			$ribbon= $ribbon.'{id: "push", text: "Push", items: [';
-			
+
 				$ribbon= $ribbon.'{type: "block", text: "Que",text_pos: "bottom", mode: "cols", list: [
 					{type: "button", id:"cron",isbig: true,text: "Que Jobs", isbig: true, img: "/cron.png"},
 				]},';
@@ -279,14 +280,14 @@ class Vas
 					{type: "button", id:"gateway", isbig: true,text: "Gateway", img: "/gateway.png"},
 				]},';
 				$ribbon= $ribbon.'{type: "block", text: "sender ID",text_pos: "bottom", mode: "cols", list: [
-					{type: "button", id:"sender_id",isbig: true,text: "Sender ID",  img: "/senderid.png"}					
+					{type: "button", id:"sender_id",isbig: true,text: "Sender ID",  img: "/senderid.png"}
 				]},';
 			$ribbon= $ribbon.']},';
 		}
 		//pull tab
 		if($this->verifyPrivillages(array('PULL','USER_MANAGE'),$userPriv)){
 			$ribbon= $ribbon.'{id: "pull", text: "Pull", items: [';
-			
+
 				$ribbon= $ribbon.'{type: "block", text: "shortcode",text_pos: "bottom", mode: "cols", list: [
 					{type: "button", id:"shortcode",isbig: true,text: "Shortcode", isbig: true, img: "/shortcode.png"},
 				]},';
@@ -296,7 +297,7 @@ class Vas
 					]},';
 				}
 				$ribbon= $ribbon.'{type: "block", text: "keys",text_pos: "bottom", mode: "cols", list: [
-					{type: "button", id:"keys",isbig: true,text: "Key List",  img: "/keys.png"}					
+					{type: "button", id:"keys",isbig: true,text: "Key List",  img: "/keys.png"}
 				]},';
 			if($this->verifyPrivillages(array('PULL'),$userPriv)){
 				$ribbon= $ribbon.'{type: "block", text: "uploaddb",text_pos: "bottom", mode: "cols", list: [
@@ -354,12 +355,12 @@ class Vas
 				if($this->session->userdata('userId')==1){// only for admin
 					$ribbon= $ribbon.'{type: "button", id:"detailsPull",text: "Details",isbig: true, img: "/details.png" },';
 				}
-					
+
 				$ribbon= $ribbon.']},';
 			}
 			$ribbon= $ribbon.']},';
 		}
-			
+
 		$ribbon = $ribbon.']';
 		return $ribbon;
 	}
@@ -367,36 +368,36 @@ class Vas
 	*/
 	public function gen_Toolbar(){
 		$toolbar ='<?xml version="1.0"?><toolbar>';
-		
-		$toolbar = $toolbar.'<item id="pullReportSort" type="text" text="Search By" img="/detail.png" />';			
-	
+
+		$toolbar = $toolbar.'<item id="pullReportSort" type="text" text="Search By" img="/detail.png" />';
+
 		$toolbar = $toolbar.'<item id="newuser" type="button" text="Add User" img="/adduser.png"/>';
 		$toolbar = $toolbar.'<item id="userapprove" type="button" text="Approve" img="/userapprove.png"/>';
 		$toolbar = $toolbar.'<item id="usersuspend" type="button" text="Suspend" img="/usersuspend.png"/>';
 		$toolbar = $toolbar.'<item id="pedit" type="button" text="Edit Privileges" img="/edit.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newgateway" type="button" text="Add Gateway" img="/assigngateway.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newsenderid" type="button" text="Add SenderID" img="/senderid.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newpackage" type="button" text="Add Package" img="/package.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newshortcode" type="button" text="Add shortcode" img="/assignshortcode.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newcategory" type="button" text="Add Category" img="/category.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newkey" type="button" text="Add key" img="/keys.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newscheme" type="button" text="Add Scheme" img="/scheme.png"/>';
-	
+
 		$toolbar = $toolbar.'<item id="newgroup" type="button" text="Add Group" img="/usergroup.png"/>';
 		$toolbar = $toolbar.'<item id="newprefix" type="button" text="Add Prefix" img="/prefix.png"/>';
 		$toolbar = $toolbar.'<item id="newoperator" type="button" text="Add Operator" img="/operator.png"/>';
 		$toolbar = $toolbar.'<item id="newcountry" type="button" text="Add Country" img="/country.png"/>';
 		$toolbar = $toolbar.'<item id="newfeature" type="button" text="Add Feature" img="/features.png"/>';
-		
-		
-	
+
+
+
 		$toolbar = $toolbar.'<item id="newscheduler" type="button" text="Add Schedule" img="/scheduler.png"/>';
 		$toolbar = $toolbar.'<item id="newmsgtemplate" type="button" text="Add Template" img="/template.png"/>';
 		$toolbar = $toolbar.'<item id="newaddressbook" type="button" text="Add Address Book" img="/adressbook.png"/>';
@@ -412,29 +413,29 @@ class Vas
 		$toolbar = $toolbar.'<item type="button"	id="contact_delete" text="Contact"    img="/contact.png"    />';
 		$toolbar = $toolbar.'</item>';
 		$toolbar = $toolbar.'<item id="edit" type="button" text="Edit" img="/edit.png" />';
-	
+
 		$toolbar = $toolbar.'<item id="approve" type="button" text="Approve" img="/approve.png"/>';
 		$toolbar = $toolbar.'<item id="disapprove" type="button" text="Disapprove" img="/disapprove.png" />';
-		
-	
+
+
 		$toolbar = $toolbar.'<item id="enable" type="button" text="Enable" img="/enable.png" />';
 		$toolbar = $toolbar.'<item id="disable" type="button" text="Disable" img="/disable.png" />';
 
 		$toolbar = $toolbar.'<item id="stopcron" type="button" text="Stop Cron" img="/stopcron.png" />';
 		$toolbar = $toolbar.'<item id="resumecron" type="button" text="Resume Cron" img="/resumecron.png" />';
-	
+
 		//$toolbar = $toolbar.'<item id="edit" type="button" text="Edit" img="/edit.png" />';
-	
+
 		$toolbar = $toolbar.'<item id="delete" type="button" text="Delete" img="/delete.png" />';
-	
+
 		$toolbar = $toolbar.'<item id="todayReport" type="button" text="Today Report" img="/detail.png" />';
-		
-	
+
+
 		$toolbar = $toolbar.'<item id="upload" type="button" text="Upload" img="/upload.png" />';
 		$toolbar = $toolbar.'<item id="detail" type="button" text="Detail" img="/detail.png" />';
 		$toolbar = $toolbar.'<item id="assignDetail" type="button" text="Assign Details" img="/detail.png" />';
 		$toolbar = $toolbar.'<item id="empty" type="button" text="Empty" img="/empty.png" />';
-	
+
 		$toolbar = $toolbar.'<item id="select" type="button" text="Select All" img="/selectall.png" />';
 		$toolbar = $toolbar.'<item id="disselect" type="button" text="Dis-select" img="/disselect.png" />';
 		$toolbar = $toolbar.'<item id="excel" type="button" text="Excel" img="/excel.png" />';
@@ -484,7 +485,7 @@ class Vas
 	}
 	public function veryfy_url($userid=NULL){
 		if($userid==NULL){
-			$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.extra_info=".$_SERVER['HTTP_HOST'],'object');
+			$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.extra_info=''",'object');
 			if($res !=NULL){
 				$this->domain_name=  $row->fld_chr_title;
 				return TRUE;
@@ -499,16 +500,16 @@ class Vas
 			do{
 				$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.fld_user_id=".$userid,'object');
 				if($res !=NULL){
-					
+
 					foreach($res as $row){
 						if($row->fld_chr_feature == 'subbranding'){
-							
-							if($_SERVER['HTTP_HOST'] == trim($row->extra_info)){ 
-							
+
+							if($_SERVER['HTTP_HOST'] == trim($row->extra_info)){
+
 								$this->domain_name=  $row->fld_chr_title;
 								return TRUE;
 							}
-						else return FALSE;  
+						else return FALSE;
 						}
 					}
 				}
@@ -518,10 +519,10 @@ class Vas
 				//var_dump($user[0]->fld_reseller_id);exit;
 			}
 			while($userid!=1);
-			
+
 			$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.fld_user_id=".$userid,'object');
-			if($res == NULL){ 
-				if($this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST'] ){	
+			if($res == NULL){
+				if($this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST'] ){
 					return TRUE;
 				}
 				else return FALSE;
@@ -529,7 +530,7 @@ class Vas
 			else{
 				foreach($res as $row){
 					if($row->fld_chr_feature == 'subbranding'){
-						if($_SERVER['HTTP_HOST'] == trim($res[0]->extra_info)){ 
+						if($_SERVER['HTTP_HOST'] == trim($res[0]->extra_info)){
 							$this->domain_name=  $res[0]->fld_chr_title;
 							return TRUE;
 						}
@@ -540,6 +541,6 @@ class Vas
 			return TRUE;
 		}
 	}
-	
+
 	/**end of class***/
 }

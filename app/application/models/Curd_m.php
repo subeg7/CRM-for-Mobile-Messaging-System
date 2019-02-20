@@ -6,8 +6,8 @@ class Curd_m extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();	
-		//include_once ("assets/connector/grid_connector.php");	
+		$this->load->database();
+		//include_once ("assets/connector/grid_connector.php");
 	}
 	public function get_search($sql, $type='array'){
 		// print("sql query:".$sql);
@@ -19,33 +19,33 @@ class Curd_m extends CI_Model
 			elseif($type=='object'){ $res = $query->result();	}
 		}
 		$query->free_result();
-		return $res; 
+		return $res;
 	}
 	public function get_insert($table,$data, $type='normal'){
 		if($type=='normal'){
-			$this->db->insert($table, $data); 
+			$this->db->insert($table, $data);
 			return ($this->db->affected_rows() >0)? $this->db->insert_id(): FALSE;
 		}
 		elseif($type=='batch'){
-			$this->db->insert_batch($table, $data); 
+			$this->db->insert_batch($table, $data);
 			return $this->db->affected_rows() == sizeof($data);
 		}
-		
+
 	}
 	// always first element in array taken as where clause
 	public function get_update($table,$data, $type='normal'){
 		if($type=='normal'){
-			$keys = array_keys($data); 
+			$keys = array_keys($data);
 			$this->db->where($keys[0], $data[$keys[0]]);
 			$this->db->update($table, $data);
 			return $this->db->affected_rows() >0;
 		}
 		elseif($type=='batch'){
-			$keys = array_keys($data[0]); 
-			$this->db->update_batch($table, $data, $keys[0]); 
+			$keys = array_keys($data[0]);
+			$this->db->update_batch($table, $data, $keys[0]);
 			return $this->db->affected_rows() > 0;
 		}
-		
+
 	}
 	/* this function take first argument as table name and secound associative array where its value is form of array
 		@return true if sucess and false if error
@@ -65,7 +65,7 @@ class Curd_m extends CI_Model
 		}
 		else{
 			$this->db->where($keys[0],$data[$keys[0]][0]);
-			$this->db->delete($table); 
+			$this->db->delete($table);
 			return $this->db->affected_rows() >0;
 		}
 	}
@@ -73,7 +73,7 @@ class Curd_m extends CI_Model
 	public function checkRecur($table,$data,$type="individual"){
 		if($type == "individual"){
 			$arr = array();
-			foreach($data as $key=>$val){			
+			foreach($data as $key=>$val){
 				$key = explode('__',$key);
 				$res = $this->get_search('SELECT '.strtolower($key[0]).' FROM '.$table.' WHERE '.strtolower($key[0]).' = "'.strtolower($val).'"');
 				if($res !== NULL) $arr[] = '<p>'. $key[1] .' already Exist</p>';
@@ -87,7 +87,7 @@ class Curd_m extends CI_Model
 			}
 			$query = $this->get_search( trim($query,'AND '));
 			return ($query !== NULL)? 'already Exist': TRUE;
-			
+
 		}
 	}
 	public function getData($from,$id=NULL,$type='array'){
