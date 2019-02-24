@@ -4,7 +4,7 @@
 	<section id="content">
 		<!-- <form action="<?php //echo '/login'; ?>" method="post"> -->
 		<form action="login" method="post">
-			<h1>Login</h1>
+			<h1>Login@Mac</h1>
             <p><?php echo $message;?></p>
 			<div>
 				<input type="text" autocomplete="off" name="identity" placeholder="Username" required="" id="username" />

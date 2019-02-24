@@ -11,34 +11,34 @@
 <title>MY Easy</title>
 
 <script language="javascript" type="text/javascript">
-<?php 
+<?php
 	if($isLogin ===TRUE){
-		require ('assets/dthmlx/codebase/dhtmlx.js');  
-		require ('assets/dthmlx/codebase/ext/dhtmlxgrid_pgn.js');  
-		require ('assets/js/jquery.js');  
-		require ('assets/js/unicode.js');  
-		require ('assets/js/ucr_dhx.js');  
+		require ('assets/dthmlx/codebase/dhtmlx.js');
+		require ('assets/dthmlx/codebase/ext/dhtmlxgrid_pgn.js');
+		require ('assets/js/jquery.js');
+		require ('assets/js/unicode.js');
+		require ('assets/js/ucr_dhx.js');
 	}
 ?>
 </script>
 
 <style type="text/css">
-<?php 
+<?php
 	if($isLogin ===TRUE){
 		require ('assets/dthmlx/skins/web/dhtmlx.css');
 		require ('assets/dthmlx/codebase/dhtmlx.css');
-		
-		require ('assets/dthmlx/codebase/ext/dhtmlxgrid_pgn_bricks.css');  
-		require ('assets/css/dhtmlxModify.css');   
+
+		require ('assets/dthmlx/codebase/ext/dhtmlxgrid_pgn_bricks.css');
+		require ('assets/css/dhtmlxModify.css');
 		require ('assets/css/main.css');
 	}
 	else{
-		
-		require ('assets/css/default.css');   
+
+		require ('assets/css/default.css');
 	}
 ?>
 </style>
-<?php 
+<?php
 if($isLogin ===TRUE){
 		//$this->load->view('layout/ribbon_json');
 		$this->load->view('layout/toolbar_xml');
@@ -51,7 +51,8 @@ if($isLogin ===TRUE){
     <header id="mainHeader">
         <div>
             <div>
-                <div><img src="vas/sms/images/load/Home.png"/></div>
+							<!-- assets/css/main.css -->
+                <div><img src="assets/images/Home.png"/></div>
                 <h1><?php echo $domainTitle;?></h1>
             </div>
             <ul id="headerMenu">
@@ -61,6 +62,6 @@ if($isLogin ===TRUE){
                 <!--<li title="help">help</li>-->
             </ul>
         </div>
-        
+
     </header>
 <?php } ?>

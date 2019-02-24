@@ -954,91 +954,88 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function login($identity, $password, $remember=FALSE)
-	{
-		// echo "identitiy is:".$identity;
-		// echo "password is:".$password;
-		$this->trigger_events('pre_login');
+	 public function login($identity, $password, $remember=FALSE)
+	 	{
+	 		$this->trigger_events('pre_login');
 
-		if (empty($identity) || empty($password))
-		{
-			$this->set_error('login_unsuccessful');
-			return FALSE;
-		}
+	 		if (empty($identity) || empty($password))
+	 		{
+	 			$this->set_error('login_unsuccessful');
+	 			return FALSE;
+	 		}
 
-		$this->trigger_events('extra_where');
+	 		$this->trigger_events('extra_where');
 
-		$query = $this->db->select($this->identity_column . ', email, id,fld_reseller_id, password, active, last_login')
-		                  ->where($this->identity_column, $identity)
-		                  ->limit(1)
-		    			  ->order_by('id', 'desc')
-						  ->get($this->tables['users']);
+	 		$query = $this->db->select($this->identity_column . ', email, id,fld_reseller_id, password, active, last_login')
+	 		                  ->where($this->identity_column, $identity)
+	 		                  ->limit(1)
+	 		    			  ->order_by('id', 'desc')
+	 		                  ->get($this->tables['users']);
 
-		// var_dump($query);
-		// return;
-		
-		if($this->is_time_locked_out($identity))
-		{
-			// Hash something anyway, just to take up time
-			$this->hash_password($password);
 
-			$this->trigger_events('post_login_unsuccessful');
-			$this->set_error('login_timeout');
-			// print("is_time_locked_out is false");
-			return FALSE;
-		}
-		
+	 		if($this->is_time_locked_out($identity))
+	 		{
+	 			// Hash something anyway, just to take up time
+	 			$this->hash_password($password);
 
-		if ($query->num_rows() === 1)
-		{
-		// print("ion check");
+	 			$this->trigger_events('post_login_unsuccessful');
+	 			$this->set_error('login_timeout');
 
-			$user = $query->row();
-			// var_dump( $user);
-			// return;
+	 			return FALSE;
+	 		}
 
-			// $password = $this->hash_password_db($user->id, $password);
-			$password = TRUE; //subeg changing this code, so that it doesn't check for passwords
+			// print_r($query);
+			// exit("query length".$query->num_rows());
+	 		if ($query->num_rows() == 1)
+	 		{
 
-			if ($password === TRUE)
-			{
-				if ($user->active >1 || !$this->vas->checkUserState($user->id) )
-				{
-					$this->trigger_events('post_login_unsuccessful');
-					$this->set_error('login_unsuccessful_not_active');
+	 			$user = $query->row();
 
-					return FALSE;
-				}
+	 			// $password = $this->hash_password_db($user->id, $password);
+				$password = TRUE;//don't check so debug is faster;
+	 			if ($password === TRUE)
+	 			{
+	 				if ($user->active >1 || !$this->vas->checkUserState($user->id) )
+	 				{
+						exit("post_login_unsuccessful ");
+	 					$this->trigger_events('post_login_unsuccessful');
+	 					$this->set_error('login_unsuccessful_not_active');
 
-			
-				$this->update_last_login($user->id);
-				$this->set_session($user);
+	 					return FALSE;
+	 				}
 
-				$this->clear_login_attempts($identity);
 
-				if ($remember && $this->config->item('remember_users', 'ion_auth'))
-				{
-					$this->remember_user($user->id);
-				}
+	 				$this->update_last_login($user->id);
+	 				$this->set_session($user);
 
-				$this->trigger_events(array('post_login', 'post_login_successful'));
-				$this->set_message('login_successful');
+	 				$this->clear_login_attempts($identity);
 
-					// print("login is verified inioauth");
-				return TRUE;
-			}
-		}
+	 				// if ($remember && $this->config->item('remember_users', 'ion_auth'))
+	 				// {
+	 				// 	$this->remember_user($user->id);
+	 				// }
 
-		// Hash something anyway, just to take up time
-		$this->hash_password($password);
+	 				$this->trigger_events(array('post_login', 'post_login_successful'));
+	 				$this->set_message('login_successful');
 
-		$this->increase_login_attempts($identity);
+					// echo"user identity:".$this->session->userdata('identity');
+					// exit("login sucessful");
+					// exit("login point".$this->session->userdata('identity'));
+	 				return TRUE;
+	 			}
+	 		}
 
-		$this->trigger_events('post_login_unsuccessful');
-		$this->set_error('login_unsuccessful');
+			exit("unsuccessful");
+	 		// Hash something anyway, just to take up time
+	 		$this->hash_password($password);
 
-		return FALSE;
-	}
+	 		$this->increase_login_attempts($identity);
+
+	 		$this->trigger_events('post_login_unsuccessful');
+	 		$this->set_error('login_unsuccessful');
+
+	 		return FALSE;
+	 	}
 
 	/**
 	 * is_max_login_attempts_exceeded
@@ -1693,7 +1690,7 @@ class Ion_auth_model extends CI_Model
 		$this->db->update($this->tables['users'], array('last_login' => $login_time,'login_validate'=>$login_time), array('id' => $id));
 
 		return $this->db->affected_rows() == 1;
-		
+
 	}
 
 	/**
@@ -1734,7 +1731,7 @@ class Ion_auth_model extends CI_Model
 	 **/
 	public function set_session($user)
 	{
-		
+
 		$this->trigger_events('pre_set_session');
 
 		$session_data = array(
@@ -1742,7 +1739,7 @@ class Ion_auth_model extends CI_Model
 		    $this->identity_column 	=> $user->{$this->identity_column},
 		    'email'                	=> $user->email,
 		    'userId'              	=> $user->id, //everyone likes to overwrite id so we'll use user_id
-		  
+
 		);
 
 		$this->session->set_userdata($session_data);

@@ -164,10 +164,19 @@ class Vas
 	adding extra data to session for future use
 	*/
 	public function setSessionUserData(){
+
 		$data = array();
+		// echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>user id is:".$this->session->userdata('userId');
+		// return;
 		$res = $this->curd_m->get_search("SELECT u.fld_balance_type AS balanceType,u.fld_reseller_id AS fld_reseller_id, g.group_id AS group_id, r.name AS name  FROM users u INNER JOIN users_groups g INNER JOIN groups r WHERE u.id=".$this->session->userdata('userId')." AND u.id = g.user_id AND g.group_id=r.id ",'object');
+		// print() $res;
+		// exit(99);
+
+
 
 		if($res!==NULL && sizeof($res)==1){
+			// echo"res has 1 column";
+			// exit(1);
 			$data['reseller'] = $res[0]->fld_reseller_id;
 			$data['gname'] = $res[0]->name;
 			$data['groupId'] = $res[0]->group_id;
@@ -184,7 +193,10 @@ class Vas
 		else{
 			return FALSE;
 		}
+
+		// print_r($data);exit(1);
 		$this->session->set_userdata($data);
+		// exit("setsession after completing".$this->session->userdata('identity'));
 		return TRUE;
 
 
@@ -193,6 +205,9 @@ class Vas
 	// returns bool , TRUE OR FALSE
 	public function logged_in()
 	{
+		// print"user info:".$this->session->userdata('identity');
+		print_r($this->session->userdata);
+		exit("...............identity in sesion is:");
 		return (bool) $this->session->userdata('identity');
 	}
 	/*This function verifies of the user has particular privileges or not
@@ -208,7 +223,6 @@ class Vas
 		return FALSE;
 	}
 	public function checkLoginStat(){
-                   // print("checking login stat..................."."<br>");
 		$res = $this->curd_m->get_search('SELECT * FROM system_flag WHERE fld_type="login"','object');
 		if($res ==NULL) return TRUE;
 		else{
@@ -235,7 +249,7 @@ class Vas
 					{type: "block", text: "Messages",text_pos: "bottom", mode: "cols", list: [
 						{type: "button", id:"template",text: "Messages",isbig: true, img: "/save_msg.png" },
 					]},';
-				if($this->hasPrivileges('api',$this->session->userdata('userId'))){//sms tab
+				if($this->verifyPrivillages('REMOTE_USER',$userPriv)){//sms tab
 					$ribbon = $ribbon.'{type: "block", text: "template",text_pos: "bottom", mode: "cols", list: [
 						{type: "button", id:"temp_msg",text: "Templates",isbig: true, img: "/template.png" },
 					]},';
@@ -328,9 +342,6 @@ class Vas
 				]},
 				{type: "block", text: "features",text_pos: "bottom", mode: "cols", list: [
 					{type: "button", id:"feature",isbig: true,text: "Features",  img: "/features.png"}
-				]},
-				{type: "block", text: "Blocked",text_pos: "bottom", mode: "cols", list: [
-					{type: "button", id:"blocked",isbig: true,text: "Cell No.",  img: "/block.png"}
 				]}
 			]},';
 		}
@@ -403,7 +414,6 @@ class Vas
 		$toolbar = $toolbar.'<item id="newaddressbook" type="button" text="Add Address Book" img="/adressbook.png"/>';
 		$toolbar = $toolbar.'<item id="newcontact" type="button" text="Add Contact" img="/contact.png" />';
 		$toolbar = $toolbar.'<item id="newtemplate" type="button" text="Add Message" img="/save_msg.png"/>';
-		$toolbar = $toolbar.'<item id="newblocknumber" type="button" text="Add Cell No." img="/block.png"/>';
 		$toolbar = $toolbar.'<item id="aedit" type="buttonSelect" text="Edit" img="/edit.png">';
 		$toolbar = $toolbar.'<item type="button"	id="address_edit"  text="Address Book" img="/adressbook.png"/>';
 		$toolbar = $toolbar.'<item type="button"	id="contact_edit" text="Contact"    img="/contact.png"    />';
@@ -430,10 +440,8 @@ class Vas
 
 		$toolbar = $toolbar.'<item id="todayReport" type="button" text="Today Report" img="/detail.png" />';
 
-
 		$toolbar = $toolbar.'<item id="upload" type="button" text="Upload" img="/upload.png" />';
 		$toolbar = $toolbar.'<item id="detail" type="button" text="Detail" img="/detail.png" />';
-		$toolbar = $toolbar.'<item id="assignDetail" type="button" text="Assign Details" img="/detail.png" />';
 		$toolbar = $toolbar.'<item id="empty" type="button" text="Empty" img="/empty.png" />';
 
 		$toolbar = $toolbar.'<item id="select" type="button" text="Select All" img="/selectall.png" />';
@@ -483,63 +491,55 @@ class Vas
 		}
 		return TRUE;
 	}
-	public function veryfy_url($userid=NULL){
-		if($userid==NULL){
-			$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.extra_info=''",'object');
-			if($res !=NULL){
-				$this->domain_name=  $row->fld_chr_title;
-				return TRUE;
-			}
-			elseif($this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST']) return TRUE;
-			return FALSE;
-		}
-		else{
-			$this->config->load('easy_config');
-			if($userid==1 && $this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST']) return TRUE;
-			elseif( $userid==1 && $this->config->item('admin_login_domain') !=$_SERVER['HTTP_HOST'] ) return FALSE;
-			do{
-				$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.fld_user_id=".$userid,'object');
-				if($res !=NULL){
-
-					foreach($res as $row){
-						if($row->fld_chr_feature == 'subbranding'){
-
-							if($_SERVER['HTTP_HOST'] == trim($row->extra_info)){
-
-								$this->domain_name=  $row->fld_chr_title;
-								return TRUE;
-							}
-						else return FALSE;
-						}
-					}
-				}
-				$user = $this->curd_m->get_search("SELECT * FROM users  WHERE id=".$userid,'object');
-				if($user==NULL) die(show_404());
-				$userid = $user[0]->fld_reseller_id;
-				//var_dump($user[0]->fld_reseller_id);exit;
-			}
-			while($userid!=1);
-
+	public function veryfy_url($userid=39){
+		// if($userid==null)
+		// 	echo "userId recieved is null::::".$userid;
+		// 	return;
+		$this->config->load('easy_config');
+		if($userid==1 && $this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST']) return TRUE;
+		elseif( $userid==1 && $this->config->item('admin_login_domain') !=$_SERVER['HTTP_HOST'] ) return FALSE;
+		do{
 			$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.fld_user_id=".$userid,'object');
-			if($res == NULL){
-				if($this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST'] ){
-					return TRUE;
-				}
-				else return FALSE;
-			}
-			else{
+			if($res !=NULL){
+
 				foreach($res as $row){
 					if($row->fld_chr_feature == 'subbranding'){
-						if($_SERVER['HTTP_HOST'] == trim($res[0]->extra_info)){
-							$this->domain_name=  $res[0]->fld_chr_title;
+
+						if($_SERVER['HTTP_HOST'] == trim($row->extra_info)){
+
+							$this->domain_name=  $row->fld_chr_title;
 							return TRUE;
 						}
-						else return FALSE;
+					else return FALSE;
 					}
 				}
 			}
-			return TRUE;
+			$user = $this->curd_m->get_search("SELECT * FROM users  WHERE id=".$userid,'object');
+			if($user==NULL) die(show_404());
+			$userid = $user[0]->fld_reseller_id;
+			//var_dump($user[0]->fld_reseller_id);exit;
 		}
+		while($userid!=1);
+
+		$res = $this->curd_m->get_search("SELECT f.fld_chr_feature AS fld_chr_feature,u.extra_info AS extra_info,u.fld_chr_title AS fld_chr_title FROM feature f INNER JOIN user_feature u  WHERE u.fld_feature_id = f.fld_int_id AND u.fld_user_id=".$userid,'object');
+		if($res == NULL){
+			if($this->config->item('admin_login_domain') ==$_SERVER['HTTP_HOST'] ){
+				return TRUE;
+			}
+			else return FALSE;
+		}
+		else{
+			foreach($res as $row){
+				if($row->fld_chr_feature == 'subbranding'){
+					if($_SERVER['HTTP_HOST'] == trim($res[0]->extra_info)){
+						$this->domain_name=  $res[0]->fld_chr_title;
+						return TRUE;
+					}
+					else return FALSE;
+				}
+			}
+		}
+		return TRUE;
 	}
 
 	/**end of class***/

@@ -59,7 +59,7 @@ class Ion_auth
 	public function __construct()
 	{
 		$this->load->config('ion_auth', TRUE);
-		$this->load->library(array('email','vas'));
+		$this->load->library(array('email'));
 		$this->lang->load('ion_auth');
 		$this->load->helper(array('cookie', 'language','url'));
 
@@ -83,7 +83,6 @@ class Ion_auth
 		}
 
 		$this->ion_auth_model->trigger_events('library_constructor');
-		date_default_timezone_set("Asia/Kathmandu");
 	}
 
 	/**
@@ -149,8 +148,7 @@ class Ion_auth
 			{
 				$data = array(
 					'identity'		=> $user->{$this->config->item('identity', 'ion_auth')},
-					'forgotten_password_code' => $user->forgotten_password_code,
-					'url'=>$_SERVER['HTTP_HOST'].'/reset_password?code&#61;'
+					'forgotten_password_code' => $user->forgotten_password_code
 				);
 
 				if(!$this->config->item('use_ci_email', 'ion_auth'))
@@ -160,18 +158,11 @@ class Ion_auth
 				}
 				else
 				{
-					$verify = $this->vas->veryfy_url($user->id);
-					if($verify ===FALSE){
-						$this->set_error('forgot_password_unsuccessful');
-						return FALSE;
-					}
-					$reseller = $this->where('id', $user->fld_reseller_id)->where('active', 1)->users()->row(); 
 					$message = $this->load->view($this->config->item('email_templates', 'ion_auth').$this->config->item('email_forgot_password', 'ion_auth'), $data, true);
-					
 					$this->email->clear();
-					$this->email->from($reseller->email,'[ No-reply ] '.$reseller->company);
+					$this->email->from($this->config->item('admin_email', 'ion_auth'), $this->config->item('site_title', 'ion_auth'));
 					$this->email->to($user->email);
-					$this->email->subject($_SERVER['HTTP_HOST']. ' - ' . $this->lang->line('email_forgotten_password_subject'));
+					$this->email->subject($this->config->item('site_title', 'ion_auth') . ' - ' . $this->lang->line('email_forgotten_password_subject'));
 					$this->email->message($message);
 
 					if ($this->email->send())
@@ -181,7 +172,6 @@ class Ion_auth
 					}
 					else
 					{
-						die(var_dump( $this->email->print_debugger()));
 						$this->set_error('forgot_password_unsuccessful');
 						return FALSE;
 					}
@@ -453,12 +443,14 @@ class Ion_auth
 	 **/
 	public function logged_in()
 	{
+
 		$this->ion_auth_model->trigger_events('logged_in');
+		// session_regenerate_id($this->session->userdata['__ci_last_regenerate']);
+		// print_r($this->session->userdata);
+		// exit("identity in sesion is:");
 
-		//  echo "loggedinstatus [".$this->session->userdata('identity')."]";
-		// echo "logged in user is:".$_SESSION['identity'];
-		return true;
-
+		// return true;
+		return (bool) $this->session->userdata('identity');
 	}
 
 	/**
