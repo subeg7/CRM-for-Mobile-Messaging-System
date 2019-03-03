@@ -49,8 +49,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+
+
+
 $route['default_controller'] = 'vas/sms/auth';
 $route['login']= 'vas/sms/auth/login';
+
+
+//2 debug routes
+$route['set'] = 'Test/set';
+$route['get'] = 'Test/get';
+
+
+// $route['test']= 'vas/sms/auth/test';
 $route['forgot_password']= 'vas/sms/auth/forgot_password';
 $route['reset_password']= 'vas/sms/auth/reset_password';
 $route['easyApi']= 'vas/sms/easyApi';

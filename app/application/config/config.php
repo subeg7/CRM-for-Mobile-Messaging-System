@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 #$config['base_url'] = 'http://';
 
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on")
-	{$ssl_set = "s";} 
+	{$ssl_set = "s";}
 		else{$ssl_set = "";}
 $config['base_url'] = "http://localhost:8888/easysms/app";
 
@@ -520,6 +520,3 @@ $config['proxy_ips'] = '';
 /******************************socket****************/
 
 $config['socket'] = 'vas/sms';
-
-
-

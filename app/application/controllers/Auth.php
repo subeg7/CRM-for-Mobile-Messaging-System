@@ -2,26 +2,57 @@
 
 class Auth extends CI_Controller {
 
+	// $tempSessionValues=array();
+	private $tempSessionValues;
+	// static $var=array();
+	static $var="not set";
+
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->database();
 		$this->load->library(array('ion_auth','form_validation','vas'));
+		// $this->load->library('manualsession');
 		$this->load->helper(array('url','language'));
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
 		$this->lang->load('auth');
 		$this->data['hostName'] = explode('.',$_SERVER['HTTP_HOST']);
+		 $this->load->library('session');
 
-		session_destroy();
-    session_start();
+		 // $this->tempSessionValues;
+		// session_destroy();
+    // session_start();
 	}
 
 	// redirect if needed, otherwise display the user list
 	function index()
 	{
-		// print_r($this->session->userdata);exit("session data");
+		// $temp = "temp at index";
+		// redirect('/','refresh');
+		// print_r($this->s);
+		// echo"setting session";
+		// $this->session->set_userdata("key_var1","value_awsome");
+		// $this->session->set_userdata("key_var2","value_awsome");
+		// $this->session->set_userdata("key_var3","value_awsome 3333");
+		// $this->session->set_userdata("key_var4","value_awsome");
+		// $this->session->set_userdata("key_var5","value_awsome");
+
+		echo"<br><br><br><br> session value";
+
+		// echo"tempSessionValues:";
+		 print_r($this->session->userdata('keyvarlogin'));
+		// print_r($this->session->userdata('key_var_login'));
+	 //
+		// echo"<br><br><br><br>";
+		// echo "...............................Session ID:".session_id()."<br>";
+	 // echo "Remote Address: ".$_SERVER['REMOTE_ADDR']."<br>";
+	 // echo "User Agent: ".$this->input->user_agent()."<br>";
+	 // echo "Last Regenerate: ".($this->session->userdata['__ci_last_regenerate']);
+
+	 // exit("terminated @ index");
+		exit;
 
 
 		if (!$this->ion_auth->logged_in())
@@ -65,6 +96,25 @@ class Auth extends CI_Controller {
 	// log the user in
 	function login()
 	{
+
+		// $this->tempSessionValues="login_auth value";
+		// $this->load->library('manualsession');
+		// $this->manualsession->setStore("login_auth value");
+
+		// $this->ManualSession->mau
+		// $this->ManualSession->manualSessionStore="login_auth value";
+		// $this->tempSessionValues[1]="login_auth value";
+
+		$this->session->set_userdata("keyvarlogin","value_awsome");
+		// echo CI_VERSION;
+		// echo $this->session->
+
+		// Auth::$var = "login value";
+		// echo"tempSessionValues:".Auth::$var;
+
+		redirect('/','refresh');
+		exit;
+
 		// session_start();
 		if ($this->ion_auth->logged_in())
 		{
@@ -87,6 +137,7 @@ class Auth extends CI_Controller {
 			{
 				//if the login is successful
 				$this->vas->setSessionUserData();
+				// print_r($_SESSION);exit;
 				// exit("identity".$this->session->userdata('identity'));
 				redirect('/', 'refresh');
 				exit;
