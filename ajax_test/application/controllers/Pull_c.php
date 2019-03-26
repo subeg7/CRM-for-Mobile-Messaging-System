@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+require_once("application/core/ESY_Controller.php");
 class Pull_c extends ESY_Controller {
 	function __construct()
 	{
