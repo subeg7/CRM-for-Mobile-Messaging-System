@@ -1,0 +1,18 @@
+Request By,Sender ID,Operator/Gateway,State,Date
+Sdsdfssdf,ujwal,NTC8687 [ NTC ],Approved,2016-07-06 12:28:53
+Sdsdfssdf,testtt,Default [ NCELL ],Disapproved [ Admin ],2016-07-06 15:13:46
+Sdsdfssdf,NTCDEFULTS,Default [ NTC ],Disapproved [ Admin ],2016-07-06 15:16:36
+Sdsdfssdf,sentry,Default [ NCELL ],Disapproved [ Admin ],2016-07-06 16:50:01
+Sdsdfssdf,abcdefghijk,Default [ NCELL ],Disapproved [ Admin ],2016-07-06 16:50:01
+Sdsdfssdf,ujwalrai,Default [ NCELL ],Approved,2016-07-06 16:50:23
+Sdsdfssdf,sentry,Default [ NCELL ],Approved,2016-07-06 16:50:23
+Sdsdfssdf,abcdefghijk,Default [ NCELL ],Approved,2016-07-06 16:50:23
+Sdsdfssdf,ujwalrai,Default [ NCELL ],Approved,2016-07-06 16:54:21
+Sdsdfssdf,sentry,Default [ NCELL ],Approved,2016-07-06 16:54:21
+Sdsdfssdf,abcdefghijk,Default [ NCELL ],Approved,2016-07-06 16:54:21
+Sdsdfssdf,ujwalrai,NTC8687 [ NTC ],Approved,2016-07-06 16:54:56
+Sdsdfssdf,sentry,NTC8687 [ NTC ],Approved,2016-07-06 16:54:56
+Sdsdfssdf,abcdefghijk,NTC8687 [ NTC ],Approved,2016-07-06 16:54:56
+Sdsdfssdf,ujwalrai,NTC8687 [ NTC ],Approved,2016-07-08 16:04:04
+Sdsdfssdf,sentry,NTC8687 [ NTC ],Approved,2016-07-08 16:04:04
+Sdsdfssdf,abcdefghijk,NTC8687 [ NTC ],Approved,2016-07-08 16:04:04

@@ -1,0 +1,8 @@
+Request By,Reseller Name,Sender ID,Operator/Gateway,State,Date,Priority
+Easy Service Pvt. Ltd,Easy Service Pvt. Ltd,33234,Default [ AXIATA ],Approved,2016-08-29 12:50:27,Default
+Easy Service Pvt. Ltd,Easy Service Pvt. Ltd,33234,Default [ NTC ],Approved,2016-08-29 12:48:11,Default
+Client,Easy Reseller,8687,NTC8687 [ NTC ],Approved,2016-08-29 12:51:21,Regular
+Client,Easy Reseller,1234,Default [ NTC ],Approved,2016-08-29 12:51:08,Regular
+Cello,Acer,cellos,Default [ AXIATA ],Approved,2016-09-01 12:49:35,Regular
+Cello,Acer,cellosms,Default [ AXIATA ],Approved,2016-09-01 12:49:35,Regular
+Cello,Acer,cello,Default [ AXIATA ],Approved,2016-09-01 12:04:13,Regular

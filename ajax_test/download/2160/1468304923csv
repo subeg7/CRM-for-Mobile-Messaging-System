@@ -1,0 +1,17 @@
+Sender ID,Operator/Gateway,Description,State,Date
+testtt,Default [ NCELL ],Disapproved ,     Sss       ,2016-07-06 15:13:46
+sentry,Default [ NCELL ],Disapproved ,None,2016-07-06 16:50:01
+abcdefghijk,Default [ NCELL ],Disapproved ,None,2016-07-06 16:50:01
+ujwalrai,Default [ NCELL ],Disapproved ,None,2016-07-06 16:50:23
+sentry,Default [ NCELL ],Disapproved ,None,2016-07-06 16:50:23
+abcdefghijk,Default [ NCELL ],Disapproved ,None,2016-07-06 16:50:23
+ujwalrai,Default [ NCELL ],Disapproved ,None,2016-07-06 16:54:21
+sentry,Default [ NCELL ],Disapproved ,None,2016-07-06 16:54:21
+abcdefghijk,Default [ NCELL ],Disapproved ,None,2016-07-06 16:54:21
+ujwal,NTC8687 [ NTC ],Disapproved ,Ujwal Company Pvt.ltd    ,2016-07-06 12:28:53
+ujwalrai,NTC8687 [ NTC ],Disapproved ,None,2016-07-06 16:54:56
+sentry,NTC8687 [ NTC ],Disapproved ,None,2016-07-06 16:54:56
+abcdefghijk,NTC8687 [ NTC ],Approved,None,2016-07-06 16:54:56
+ujwalrai,NTC8687 [ NTC ],Approved,None,2016-07-08 16:04:04
+sentry,NTC8687 [ NTC ],Approved,None,2016-07-08 16:04:04
+abcdefghijk,NTC8687 [ NTC ],Approved,None,2016-07-08 16:04:04

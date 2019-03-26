@@ -1,0 +1,13 @@
+Request By/Reseller Name,Sender ID,Description,Operator/Gateway,State,Date,Priority
+Easy Service Pvt. Ltd[ Easy Service Pvt. Ltd ],33234,Default Sender Id         ,Default [ NTC ],Approved,2016-08-29 12:48:11,Default
+Easy Service Pvt. Ltd[ Easy Service Pvt. Ltd ],33234,Default Axiata  ,Default [ AXIATA ],Approved,2016-09-23 22:27:21,Default
+Client[ Easy Reseller ],8687,none,NTC8687 [ NTC ],Approved,2016-08-29 12:51:21,Regular
+Client[ Easy Reseller ],test,None,Default [ AXIATA ],Approved,2016-09-23 22:33:49,Regular
+Client[ Easy Reseller ],8687test,For Ujwal Rai,NTC8687 [ NTC ],Approved,2016-09-23 22:21:29,Regular
+Client[ Easy Reseller ],tow,None,Default [ AXIATA ],Approved,2016-09-23 22:33:49,Regular
+Client[ Easy Reseller ],one,None,Default [ AXIATA ],Approved,2016-09-23 22:33:49,Regular
+Client[ Easy Reseller ],1234,none,Default [ NTC ],Approved,2016-08-29 12:51:08,Regular
+Cello[ Acer ],cellos,None,Default [ AXIATA ],Approved,2016-09-01 12:49:35,Regular
+Cello[ Acer ],cellosms,None,Default [ AXIATA ],Approved,2016-09-01 12:49:35,Regular
+Ujwal Api[ Easy Service Pvt. Ltd ],7890,         Sdfsdf   ,NTC8687 [ NTC ],Approved,2016-09-08 15:36:57,Regular
+Ujwal Api[ Easy Service Pvt. Ltd ],ujwaltest,none,Default [ AXIATA ],Approved,2016-09-08 15:37:11,Regular
