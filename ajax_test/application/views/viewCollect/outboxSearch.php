@@ -2,12 +2,12 @@
 	<form>
     	<table>
         <?php 
-			if(in_array('USER_MANAGE',$priv)){
+			// if(in_array('USER_MANAGE',$priv)){//buttonDebug 
 				echo '<tr>
             	<td>User ID</td>
                 <td><input type="text" name="userid" id="userid"/></td>
             </tr>';
-			}
+			// }//buttonDebug
         	
 		?>
         	<tr>

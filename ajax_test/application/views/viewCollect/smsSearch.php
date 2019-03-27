@@ -43,7 +43,7 @@ $('#smssearch form').submit(function(e) {
 		return;
 	}
 	
-	obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/report_c/renderSmsTransaction/search?object=grid&"+$(this).serialize(),function(e){
+	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderSmsTransaction/search?object=grid&"+$(this).serialize(),function(e){
 	/*obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');*/
 	} );

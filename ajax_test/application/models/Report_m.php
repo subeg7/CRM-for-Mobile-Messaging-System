@@ -67,6 +67,8 @@ class Report_m extends CI_Model
 								'rows'=>$rows
 							));
 	}
+
+
 	public function todayCalback($item){
 
 		date_default_timezone_set("Asia/Kathmandu");
@@ -77,6 +79,8 @@ class Report_m extends CI_Model
 			if($this->startDate > 0 && $this->endDate > 0 ){
 				$item->set_value('smsdate',date('Y-m-d H:i:s',$this->startDate).' - '. date('Y-m-d H:i:s',$this->endDate));
 			}else{
+
+
 				$item->set_value('smsdate','Today');
 			}
 			$operator = $this->curd_m->getData('operator',array('fld_int_id'=>$item->get_value('fld_int_career')),'object');

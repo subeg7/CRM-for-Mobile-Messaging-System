@@ -43,7 +43,7 @@ obj.create_dhx_calander({ // adding calander in toolbar button :ID = fromDate
 			});
 $('#pullDetails form').submit(function(e) {
     e.preventDefault();
-	obj.grid['dhxDynFeild_t'].clearAndLoad( 'vas/sms/report_c/detailPull/search?object=grid&'+$(this).serialize(),function(e){
+	obj.grid['dhxDynFeild_t'].clearAndLoad( 'report_c/detailPull/search?object=grid&'+$(this).serialize(),function(e){
 	//obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 	if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
 	} );

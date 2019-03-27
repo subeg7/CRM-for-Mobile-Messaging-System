@@ -49,9 +49,9 @@ $('#creditsearch form').submit(function(e) {
 		return;
 	}
 	
-	obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/report_c/renderCredit/search?object=grid&"+$(this).serialize(),function(e){
+	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderCredit/search?object=grid&"+$(this).serialize(),function(e){
 		obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
-		var res = obj.dhx_ajax('vas/sms/report_c/sumCreditlog/'+start+'/'+till);
+		var res = obj.dhx_ajax('report_c/sumCreditlog/'+start+'/'+till);
 		if(res!=='none'){
 			
 			res = JSON.parse(res);

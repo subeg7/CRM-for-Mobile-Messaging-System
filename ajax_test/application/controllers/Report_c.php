@@ -79,6 +79,7 @@ class Report_c extends ESY_Controller {
 										'userdata'=>($this->input->get('userdata'))?$this->input->get('userdata'):NULL,
 										'from'=>($this->input->get('from'))?strtotime($this->input->get('from')):NULL,
 										'till'=>($this->input->get('till'))?strtotime($this->input->get('till')):NULL
+									
 									),$search);
 		}
 

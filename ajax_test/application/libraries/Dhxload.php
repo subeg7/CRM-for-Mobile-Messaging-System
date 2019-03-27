@@ -18,16 +18,35 @@ class Dhxload
 	}
 	public function getXml(){
 		$row = explode(',',$this->rows);
+		// echo"$row=".$this->rows;
+		// print_r($this->rows);
+		// var_dump($this->data);
+		// $var = $row[5];
+		// echo"".$this->data->$var;
+		// $this->data['xcompany'];
+
+		// $jsonToArray = json_decode((string)$this->data, true);
+
+
+
+		// echo "<br>";
+		// echo "size of row is:".sizeof($row)."<br>";
+		// $this->data->
+		// print_r($this->data);
+		// exit("exit");
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i==0){
-				$rowXml .="<row id='".(string) htmlspecialchars($this->data->$row[$i])."'>";
+				$var = $row[$i];
+				$rowXml .="<row id='".$this->data->$var."'>";
 			}
 			else{
-				$rowXml .="<cell>".(string) htmlspecialchars($this->data->$row[$i])."</cell>";
+				$var = $row[$i];
+				$rowXml .="<cell>".$this->data->$var."</cell>";
 			}
 		}
-		return $rowXml.'</row>';
+		echo">>>>".$rowXml;
+		// return $rowXml.'</row>';
 	}
 	public function getCsv(){
 
