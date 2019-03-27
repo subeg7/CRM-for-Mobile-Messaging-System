@@ -499,7 +499,7 @@ $this->load->view('layout/header.php');
 		 });
 	}
 	InitObj.prototype.sendBox = function (id,priv){
-		this.showItem_toolBar('toolbar',['todayReport','detail','search']);
+		this.showItem_toolBar('toolbar',['todayReport','detail','search','excel_new']);
 		<?php if($isAdmin =='admin' ){?>
 			var header = "Send By/Reseller,Sender ID,Message,Cell No.,Date,User Data";
 			var width = "200,110,245,115,135,125";
