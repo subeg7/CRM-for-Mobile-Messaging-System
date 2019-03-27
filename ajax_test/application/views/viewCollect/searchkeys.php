@@ -54,8 +54,8 @@
 (function(e){
 	
 	$('#searchReset').click(function(e) {
-        obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/pull_c/renderKeys?object=grid");
-		obj.searchQuery = 'vas/sms/push_c/renderSenderId';
+        obj.grid['dhxDynFeild_t'].clearAndLoad( "pull_c/renderKeys?object=grid");
+		obj.searchQuery = 'push_c/renderSenderId';
     });
 	$('#searchKeys form').submit(function(e) {
 		e.preventDefault();
@@ -69,7 +69,7 @@
 			return;
 		}
 		
-		obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/pull_c/renderKeys/search?object=grid&"+$(this).serialize(),function(e){
+		obj.grid['dhxDynFeild_t'].clearAndLoad( "pull_c/renderKeys/search?object=grid&"+$(this).serialize(),function(e){
 			obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 			if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
 		} );

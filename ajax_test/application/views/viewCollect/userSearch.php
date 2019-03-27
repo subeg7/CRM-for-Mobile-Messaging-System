@@ -59,7 +59,7 @@
 $('#usersearch form').submit(function(e) {
 	
     e.preventDefault();
-	var query = 'vas/sms/userManage_c/renderUser/'+( (obj.ribb['ribbon'].getValue('combo_st')==1)?'approve':'suspend')+'/search';
+	var query = 'userManage_c/renderUser/'+( (obj.ribb['ribbon'].getValue('combo_st')==1)?'approve':'suspend')+'/search';
 	obj.grid['dhxDynFeild_t'].clearAndLoad( query+"?object=grid&"+$(this).serialize(),function(e){
 	obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
@@ -67,7 +67,7 @@ $('#usersearch form').submit(function(e) {
 	
 });
 $('#searchReset').click(function(e) {
-        obj.grid['dhxDynFeild_t'].clearAndLoad( 'vas/sms/userManage_c/renderUser/'+( (obj.ribb['ribbon'].getValue('combo_st')==1)?'approve':'suspend')+"?object=grid");
+        obj.grid['dhxDynFeild_t'].clearAndLoad( 'userManage_c/renderUser/'+( (obj.ribb['ribbon'].getValue('combo_st')==1)?'approve':'suspend')+"?object=grid");
 		obj.searchQuery = '';
     });
 

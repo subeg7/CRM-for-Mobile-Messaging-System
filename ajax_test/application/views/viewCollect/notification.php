@@ -64,11 +64,11 @@
     });
 obj.dynamicGrid({ id:'notice_grid',header:"Date,Description",setInitWidths:'140,440',multiple:'multiple',attachHeader:false,pagesInGrp:6,pageSize:8});
 $('#todayNotic').click(function(e) {
-	obj.grid['notice_grid_t'].clearAndLoad('vas/sms/common_c/getTodayNotice');
+	obj.grid['notice_grid_t'].clearAndLoad('common_c/getTodayNotice');
 });
 $('#notice_form').submit(function(e) {
     e.preventDefault();
-	obj.grid['notice_grid_t'].clearAndLoad('vas/sms/common_c/searchNotice'+"?object=grid&"+$('#notice_form').serialize(),function(){
+	obj.grid['notice_grid_t'].clearAndLoad('common_c/searchNotice'+"?object=grid&"+$('#notice_form').serialize(),function(){
 	
 		if(obj.grid['notice_grid_t'].getUserData( "","message")!=undefined && obj.grid['notice_grid_t'].getUserData( "","message")!=''){ obj.message_show('** Warning : '+obj.grid['notice_grid_t'].getUserData( "","message"),'error');
 		}

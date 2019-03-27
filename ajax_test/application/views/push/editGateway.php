@@ -2,7 +2,7 @@
 	<table>
     	<tr>
         	<td>Gateway Name :</td>
-            <td><input autocomplete="off" disabled name="gname" type="text" class="editDisabled" data-val="<?php echo ucwords($gateway[0]->fld_char_gw_name); ?>" value="<?php echo ucwords($gateway[0]->fld_char_gw_name); ?>" /><span class="edit">Edit..</span></td>
+            <td><input autocomplete="off" disabled name="gname" type="text" class="editDisabled" data-val="<?php echo ucwords($gateway[0]->fld_char_gw_name); ?>" value="<?php echo ucwords($gateway[0]->fld_char_gwsdfsdf_name); ?>" /><span class="edit">Edit..</span></td>
         </tr>
     	<tr>
         	<td>Host Name :</td>
@@ -65,7 +65,7 @@ $('#editGateway').submit(function(e) {
     e.preventDefault();
 	var id = obj.getSelected('dhxDynFeild');
 	if(id==null) return;
-	var res = obj.dhx_ajax('vas/sms/push_c/gateway/edit/'+id,$(this).serialize() );
+	var res = obj.dhx_ajax('push_c/gateway/edit/'+id,$(this).serialize() );
 	if(res==='sucess'){
 		obj.message_show('New Gateway has been updated sucessfully');
 		obj.winTooble = true;

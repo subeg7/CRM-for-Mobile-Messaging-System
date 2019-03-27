@@ -49,7 +49,7 @@ border: 1px solid #a4bed4; margin-bottom:10px;
     <script type="text/javascript">
     	(function(){
 			$('.systemOption').click(function(e) {
-				var res = obj.dhx_ajax('vas/sms/sysManage_c/systemSettings/'+$(this).data('val'));
+				var res = obj.dhx_ajax('sysManage_c/systemSettings/'+$(this).data('val'));
 				if(res =='sucess'){
 					obj.message_show('System Settings Updated sucessfullys');
 					if( $(this).data('val') =='disable_push' ){
@@ -180,7 +180,7 @@ $(".contentEdit").on('keydown',function(e){
 		if(realVal.toLowerCase().replace(/\s/g, "")   == txt.toLowerCase().replace(/\s/g, "")  ) { 
 			return ;
 		}
-		var res = obj.dhx_ajax('vas/sms/common_c/changeSetings/'+$(this).data('val')+'/'+encodeURIComponent(txt) );
+		var res = obj.dhx_ajax('common_c/changeSetings/'+$(this).data('val')+'/'+encodeURIComponent(txt) );
 		if(res==='sucess'){
 			obj.message_show($(this).parent('td').siblings('td').text()+' Sucessfully updated');
 		}
@@ -210,7 +210,7 @@ $('#settings > div > div table tr td span:last-child').on('focusout',function(e)
 	if(realVal.toLowerCase().replace(/\s/g, "")   == txt.toLowerCase().replace(/\s/g, "")  ) { 
 		return ;
 	}
-	var res = obj.dhx_ajax('vas/sms/common_c/changeSetings/'+$(this).data('val')+'/'+encodeURIComponent(txt) );
+	var res = obj.dhx_ajax('common_c/changeSetings/'+$(this).data('val')+'/'+encodeURIComponent(txt) );
 	if(res==='sucess'){
 		obj.message_show($(this).parent('td').siblings('td').text()+' Sucessfully updated');
 	}
@@ -229,7 +229,7 @@ $('#passsub').click(function(e) {
 	arr.push('password='+$('#passwrd').val().replace(/\s/g, ""));
 	arr.push('conpassword='+$('#confpass').val().replace(/\s/g, ""));
 	
-    var res = obj.dhx_ajax('vas/sms/userManage_c/resetPasswordIndi',arr.join('&') );
+    var res = obj.dhx_ajax('userManage_c/resetPasswordIndi',arr.join('&') );
 	if(res == 'sucess'){
 		$('#passwrd').val('');
 		$('#conpassword').val('');

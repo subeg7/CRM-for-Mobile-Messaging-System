@@ -29,7 +29,7 @@ $('#uploadSearch form').submit(function(e) {
 	}
 	if(uniqueid=='') uniqueid='none';
 	
-	obj.grid['uploadGrid_t'].clearAndLoad( 'vas/sms/pull_c/renderUpload/'+obj.tree['uploadkeyTree'].getSelectedItemId()+'/'+uniqueid+'/'+counts+'?object=grid',function(e){
+	obj.grid['uploadGrid_t'].clearAndLoad( 'pull_c/renderUpload/'+obj.tree['uploadkeyTree'].getSelectedItemId()+'/'+uniqueid+'/'+counts+'?object=grid',function(e){
 	//obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 	/*if(obj.grid['uploadGrid_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');*/
 	} );

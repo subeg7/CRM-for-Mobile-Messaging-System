@@ -38,7 +38,7 @@
 				param: [ 'sDate','tDate']
 			});
 	$('#searchReset').click(function(e) {
-        obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/push_c/renderSenderId?object=grid");
+        obj.grid['dhxDynFeild_t'].clearAndLoad( "push_c/renderSenderId?object=grid");
 		obj.searchQuery = '';
     });
 	$('#searchSenderId form').submit(function(e) {
@@ -81,7 +81,7 @@
 		arr.push('state='+($('#searchSenderId select[name="state"]').val().replace(/ +/g, "")));
 		arr.push('senderId='+($('#searchSenderId input[name="senderId"]').val().replace(/ +/g, "")));
      //  console.log(arr);
-		obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/push_c/renderSenderId/search?object=grid&"+arr.join('&'),function(e){
+		obj.grid['dhxDynFeild_t'].clearAndLoad( "push_c/renderSenderId/search?object=grid&"+arr.join('&'),function(e){
 			obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 			if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
 			//console.log(obj.searchQuery);
