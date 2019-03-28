@@ -42,7 +42,7 @@ $('#smssearch form').submit(function(e) {
 		obj.message_show('** Warning : One of the date field is empty','error');
 		return;
 	}
-	
+
 	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderSmsTransaction/search?object=grid&"+$(this).serialize(),function(e){
 	/*obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');*/
@@ -51,12 +51,12 @@ $('#smssearch form').submit(function(e) {
 
 </script>
 <style>
-#smssearch{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;  
+#smssearch{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;
 box-sizing: border-box;}
 #smssearch,#smssearch table tr td,#smssearch input,#smssearch select{
-	font-size:12px; 
+	font-size:12px;
 }
-#smssearch form{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;  
+#smssearch form{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;
 box-sizing: border-box;}
 #smssearch table{ margin:0 auto;}
 #smssearch table input{ width:160px; padding:3px 5px;}

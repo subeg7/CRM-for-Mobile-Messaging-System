@@ -1,14 +1,14 @@
 <div id="outboxsearch">
 	<form>
     	<table>
-        <?php 
-			// if(in_array('USER_MANAGE',$priv)){//buttonDebug 
+        <?php
+			// if(in_array('USER_MANAGE',$priv)){//buttonDebug
 				echo '<tr>
             	<td>User ID</td>
                 <td><input type="text" name="userid" id="userid"/></td>
             </tr>';
 			// }//buttonDebug
-        	
+
 		?>
         	<tr>
             	<td>Number</td>
@@ -63,8 +63,8 @@ $('#outboxsearch form').submit(function(e) {
 		obj.message_show('** Error : Start Date is Greater than Till Date','error');
 		return;
 	}
-	
-	obj.grid['dhxDynFeild_t'].clearAndLoad( "vas/sms/report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
+
+	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
 	/*obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');*/
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
@@ -73,12 +73,12 @@ $('#outboxsearch form').submit(function(e) {
 
 </script>
 <style>
-#outboxsearch{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;  
+#outboxsearch{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;
 box-sizing: border-box;}
 #outboxsearch,#outboxsearch table tr td,#outboxsearch input,#outboxsearch select{
-	font-size:12px; 
+	font-size:12px;
 }
-#outboxsearch form{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;  
+#outboxsearch form{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;
 box-sizing: border-box;}
 #outboxsearch table{ margin:0 auto;}
 #outboxsearch table input{ width:160px; padding:3px 5px;}

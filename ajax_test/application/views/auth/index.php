@@ -14,10 +14,13 @@ $this->load->view('layout/header.php');
         <div id="main_feild" style="width:930px;  margin:10px auto;">
         	<div id="ribbonState" class="ribbonUp"></div>
             <div id="dhxDynFeild">
-
             </div>
+
+
             <div id="extraData">
             </div>
+
+            
         </div>
     </div>
 </section>

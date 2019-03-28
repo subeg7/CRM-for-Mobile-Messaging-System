@@ -1,8 +1,4 @@
 <!doctype html>
-<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <html>
 <head>
 <meta charset="utf-8">
@@ -13,13 +9,18 @@
 <script language="javascript" type="text/javascript">
 <?php
 	if($isLogin ===TRUE){
+
+		echo"console.log('before requiring');";
+
+
 		require ('assets/dthmlx/codebase/dhtmlx.js');
 		require ('assets/dthmlx/codebase/ext/dhtmlxgrid_pgn.js');
 		require ('assets/js/jquery.js');
 		require ('assets/js/unicode.js');
 		require ('assets/js/ucr_dhx.js');
-		require ('assets/js/myJsTest.js');
-		// echo"console.log('you are logged in');";
+		// echo"";
+		// require ('assets/js/myJsTest.js');
+		echo"console.log('point is here');";
 	}
 ?>
 </script>
