@@ -71,15 +71,15 @@ class Button_m	 extends CI_Model
 
 			if($userid==1){
 				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company,r.company AS rcompany FROM outbox o INNER JOIN users u INNER JOIN users r WHERE o.fld_reseller_id=r.id AND o.fld_int_userid=u.id AND o.fld_int_ondate BETWEEN 0'." AND ".time()." ORDER BY o.fld_int_ondate DESC";
-				$rows = 'fld_int_id,xcompany,fld_chr_sender,fld_chr_message,cell,ondate,fld_user_data';
+				$rows = 'fld_int_id,xcompany,fld_chr_sender,fld_chr_message,fld_user_data';
 			}
 			elseif(in_array('USER_MANAGE',$data['privileges'])){
 				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company FROM outbox o INNER JOIN users u WHERE o.fld_reseller_id='.$userid.' AND u.id = o.fld_int_userid AND o.fld_int_ondate BETWEEN '.strtotime(date("Y/m/d"))." AND ".time()." ORDER BY o.fld_int_ondate DESC";
-				$rows = 'fld_int_id,company,fld_chr_sender,fld_chr_message,cell,ondate,fld_user_data';
+				$rows = 'fld_int_id,company,fld_chr_sender,fld_chr_message,fld_user_data';
 			}
 			elseif(!in_array('USER_MANAGE',$data['privileges'])){
 				$query ='SELECT * FROM outbox WHERE fld_int_userid='.$userid.' AND fld_int_ondate BETWEEN '.strtotime(date("Y/m/d"))." AND ".time()." ORDER BY fld_int_ondate DESC";
-				$rows = 'fld_int_id,fld_chr_sender,fld_chr_message,cell,ondate,fld_user_data';
+				$rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';
 			}
 
 
@@ -100,8 +100,8 @@ class Button_m	 extends CI_Model
 											'prinRowsName'=>$prinRowsName
 											));
 
-											echo"calling the dhx load sucess";
-												exit("sdfs");
+											// echo"calling the dhx load sucess";
+											// 	exit("sdfs");
 
 
 				$folderName = $this->curd_m->getData('users',array('id'=>$this->session->userdata('userId') ),'object');

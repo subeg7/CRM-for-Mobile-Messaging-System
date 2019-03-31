@@ -44,8 +44,8 @@ class Dhxload
 			if($i>0){
 				$var = $row[$i];
 				// echo"";
-				echo"<br><br><br><br>var :".$var;
-				echo"<br>this->data->".$var.":".$this->data->$var;
+				// echo"<br><br><br><br>var :".$var;
+				// echo"<br>this->data->".$var.":".$this->data->$var;
 				$rowXml .=(string) $this->data->$var.",";
 			}
 		}
