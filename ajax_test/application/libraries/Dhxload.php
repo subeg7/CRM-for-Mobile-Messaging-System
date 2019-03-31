@@ -18,7 +18,7 @@ class Dhxload
 	}
 	public function getXml(){
 		$row = explode(',',$this->rows);
-		
+
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i==0){
@@ -30,10 +30,10 @@ class Dhxload
 				$rowXml .="<cell>".$this->data->$var."</cell>";
 			}
 
-		
 		}
-		
-		return $rowXml.'</row>';
+		 $rowXml.='</row>';
+
+		return $rowXml;
 	}
 	public function getCsv(){
 
@@ -41,7 +41,8 @@ class Dhxload
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
-				$rowXml .=(string) strip_tags($this->data->$row[$i]).",";
+				$var = $row[$i];
+				$rowXml .=(string) strip_tags($this->data->$var).",";
 			}
 		}
 		return trim($rowXml,',')."\r\n";

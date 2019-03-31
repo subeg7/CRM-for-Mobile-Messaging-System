@@ -10,7 +10,7 @@
 <?php
 	if($isLogin ===TRUE){
 
-		echo"console.log('before requiring');";
+		// echo"console.log('before requiring');";
 
 
 		require ('assets/dthmlx/codebase/dhtmlx.js');
@@ -20,7 +20,7 @@
 		require ('assets/js/ucr_dhx.js');
 		// echo"";
 		// require ('assets/js/myJsTest.js');
-		echo"console.log('point is here');";
+		// echo"console.log('point is here');";
 	}
 ?>
 </script>

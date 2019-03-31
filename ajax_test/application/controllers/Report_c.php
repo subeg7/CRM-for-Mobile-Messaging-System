@@ -67,6 +67,7 @@ class Report_c extends ESY_Controller {
 
 	}
 	public function renderOutbox($search=NULL){
+		// return"successfull rendering of outbox";
 		if($search==NULL){
 			$this->report_m->renderOutbox();
 		}else{
@@ -85,7 +86,7 @@ class Report_c extends ESY_Controller {
 
 	}
 	public function renderSmsTransaction($search=NULL,$userid = NULL){
-
+		// return "";
 		if($search==NULL){
 			$this->report_m->renderSmsTransaction();
 		}else{

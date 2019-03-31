@@ -31,7 +31,7 @@
                 <td><input type="text" name="till" readonly id="tillCredit"/></td>
             </tr>
         </table>
-        <p><input class="button" type="reset" value="Reset"/><input class="button" id="userSubmit" type="submit" name="submit" value="Submit"/></p>
+        <p><input class="button" type="reset" value="Reset"/><input class="button" id="userSubmit" type="submit" name="submit" value="Search Outbox"/></p>
     </form>
 </div>
 
@@ -43,6 +43,8 @@ obj.create_dhx_calander({ // adding calander in toolbar button :ID = fromDate
 				param: [ 'fromCredit','tillCredit']
 			});
 $('#outboxsearch form').submit(function(e) {
+
+	// console.log("searching the outbox");
     e.preventDefault();
 	var start = $('#fromCredit').val();
 	var arr =[];
@@ -64,9 +66,11 @@ $('#outboxsearch form').submit(function(e) {
 		return;
 	}
 
+	// console.log("$(this).serialize()",$(this).serialize());
 	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
-	/*obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
-		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');*/
+
+		console.log("ajax returned successfully with: ",e);
+		
 		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
 	} );
 });

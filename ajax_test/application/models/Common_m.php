@@ -159,7 +159,7 @@ class Common_m extends CI_Model
 		return $number_validated;
 	}
 	public function getExcecl($data,$folderName){
-		$folderName = "/home/ujwal/public_html/download/".$folderName;
+		$folderName = "download/".$folderName;
 		$fileName = time();
 		$filePath = $folderName.'/'.$fileName;
 		if(!is_dir($folderName)){
@@ -171,9 +171,10 @@ class Common_m extends CI_Model
 		fclose($file);
 		chmod($filePath.'.csv', 0777);
 		$zip = new ZipArchive();
-		if($zip->open($filePath.".zip",TRUE ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {
-			return FALSE;
-		}
+		// if($zip->open($filePath.".zip",TRUE ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {//default
+			// exit("here");//buttonDebug
+			// return FALSE;//default
+		// }//default
 		$zip->addFile($filePath.'.csv',$fileName.'.csv');
 		$zip->close();
 
@@ -190,7 +191,8 @@ class Common_m extends CI_Model
 		header('Content-Length: '.filesize($filePath.'.csv'));	// provide file size
 		header('Connection: close');
 		readfile($filePath.'.csv');		// push it out
-		exit();
+		// echs;
+		// exit("exiting here");
 		return $filePath.'.csv';
 	}
 	public function getBalance($userid,$baltype,$operator=NULL){

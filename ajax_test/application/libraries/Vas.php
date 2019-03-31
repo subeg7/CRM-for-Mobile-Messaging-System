@@ -251,7 +251,7 @@ class Vas
 							{value: "1", text: "Approved Clients", selected: true},
 							{value: "0", text: "Suspended Clients"}
 						]},
-						{type: "button", id:"gen_exl_list", text: "Generate EXCEL" , img: "/excel.png"},
+						{type: "button", id:"gen_exl_list", text: "Generate EXCEL" , img: "/excelsddsfs.png"},
 
 					]},';
 
@@ -430,7 +430,7 @@ class Vas
 
 		$toolbar = $toolbar.'<item id="select" type="button" text="Select All" img="/selectall.png" />';
 		$toolbar = $toolbar.'<item id="disselect" type="button" text="Dis-select" img="/disselect.png" />';
-		$toolbar = $toolbar.'<item id="excel" type="button" text="Excel_this" img="/excel.png" />';
+		$toolbar = $toolbar.'<item id="excel" type="button" text="Excel" img="/excel.png" />';
 
 		$toolbar = $toolbar.'<item id="excel_new" type="button" text="Download_excel_new" img="/excel.png" />';
 		

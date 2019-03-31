@@ -2,8 +2,11 @@
 this file contains the toolbar event  oriented javscript
 */
 
+// console.log("dhxToolbarEv is loaded:");
+
 // @pram :  id , gives the id of the tool bar
 obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
+	// console.log("you clicked:",prev_id);
 	obj.toolbar_id = id;
 	if(id=='newcountry'){
 		obj.dhx_win({ id:id,height:200,width:300,header:'Add Country',file_l:'sysManage_c/sysView/addCountry'});
@@ -250,6 +253,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 		}else{
 			obj.grid['dhxDynFeild_t'].clearAndLoad('report_c/renderTodayReport/'+obj.prev_id,function(e){
 				if(obj.prev_id==='creditlog'){
+					console.log("this is creditlog excel");
 					var res = obj.dhx_ajax('report_c/sumCreditlog');
 					if(res!=='none'){
 						res = JSON.parse(res);
@@ -273,6 +277,8 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 	else  if( id =='excel'){
 		var res = obj.dhx_ajax('common_c/rdyDownload');
 		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
+		console.log("excel detail:>",obj.prev_id);
+
 		if(obj.prev_id == 'sender_id'){
 
 			window.open('push_c/renderSenderId/download?id='+res+'&'+obj.searchQuery,'_blank');

@@ -1,4 +1,5 @@
 obj.ribb['ribbon'].attachEvent("onClick", function(itemId, bId){
+	// console.log("ribbon onClick fired at ",itemId);
 	$('#extraData').empty();
 	if(obj.wind !=null) obj.destroy_dhx_object('window'); // destroying all the windos if exist
 	if(itemId == 'sendsms'){
@@ -78,6 +79,7 @@ obj.ribb['ribbon'].attachEvent("onClick", function(itemId, bId){
 
 	}
 	else if(itemId == 'gen_exl_list'){
+		console.log("generating excel...");//debug button
 		var res = obj.dhx_ajax('common_c/rdyDownload');
 		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
 		window.open('userManage_c/renderUser/'+( (obj.ribb['ribbon'].getValue('combo_st')==1)?'approve':'suspend')+'/download?id='+res+'&'+obj.searchQuery,'_blank')

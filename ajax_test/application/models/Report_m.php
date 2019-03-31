@@ -34,7 +34,7 @@ class Report_m extends CI_Model
 		}
 		elseif($type =='sentbox'){ // sent box report
 			if($userid==1){
-				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company,r.company AS rcompany FROM outbox o INNER JOIN users u INNER JOIN users r WHERE o.fld_reseller_id=r.id AND o.fld_int_userid=u.id AND o.fld_int_ondate BETWEEN '.strtotime(date("Y/m/d"))." AND ".time()." ORDER BY o.fld_int_ondate DESC";
+				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company,r.company AS rcompany FROM outbox o INNER JOIN users u INNER JOIN users r WHERE o.fld_reseller_id=r.id AND o.fld_int_userid=u.id AND o.fld_int_ondate BETWEEN 0'." AND ".time()." ORDER BY o.fld_int_ondate DESC";
 				$rows = 'fld_int_id,xcompany,fld_chr_sender,fld_chr_message,cell,ondate,fld_user_data';
 			}
 			elseif(in_array('USER_MANAGE',$priv)){
@@ -58,7 +58,10 @@ class Report_m extends CI_Model
 				$rows = 'usersid,dcompany,transaction';
 
 		}
-		//echo $query;
+		// return $query;
+		// echo"console.log('file found')";
+		// echo $query;
+		// exit("terminated");
 		$this->dhxload->dhxDynamicLoad(array(
 								'posStart'=>(isset($_GET["posStart"]) )?$_GET['posStart']:0,
 								'count'=>(isset($_GET["count"]) )?$_GET['count']:10,
@@ -268,6 +271,7 @@ class Report_m extends CI_Model
 			$query =$query.$like;
 		}
 
+		
 		$this->dhxload->dhxDynamicLoad(array(
 								'posStart'=>(isset($_GET["posStart"]) )?$_GET['posStart']:0,
 								'count'=>(isset($_GET["count"]) )?$_GET['count']:10,
