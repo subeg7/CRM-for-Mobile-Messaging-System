@@ -1,6 +1,4 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-
 class Common_m extends CI_Model
 {
 	public function __construct()
@@ -19,7 +17,6 @@ class Common_m extends CI_Model
 		}
 		if($req =='ajax') die('** Error: Privileges Group Error');
 		else return FALSE;
-
 	}
 	public function checkRemote($id,$req = 'ajax'){
 		$priv = $this->vas->getGroupPrivileges($id);
@@ -29,7 +26,6 @@ class Common_m extends CI_Model
 		}
 		if($req =='ajax') die('** Error: Privileges Group Error');
 		else return FALSE;
-
 	}
 	public function getGroup($id){
 		$res = $this->curd_m->get_search('SELECT g.id AS id, g.name AS name FROM users_groups u INNER JOIN groups g WHERE g.id=u.group_id AND u.user_id='.$id,'object');
@@ -81,9 +77,7 @@ class Common_m extends CI_Model
 		else if( $ms_type == 2 && $len > 70  ) $size = 67;
 		else if( $ms_type != 2 && $len <= 160) $size = 160;
 		else if( $ms_type != 2 && $len > 160 ) $size = 153;
-
 		$char_len= ( $len-((int)($len/$size)*$size));
-
 		if($char_len!=0){
 			$msg_len = (int)(($len+$size)/$size);
 		}
@@ -91,15 +85,12 @@ class Common_m extends CI_Model
 			$msg_len = (int)(($len)/$size);
 		}
 		$res['msg_len']= $msg_len;
-
 		if($char_len!=0){
 			$res['char_len'] =  ($size- $char_len) ;
 		}else{
 			$res['char_len'] = $char_len;
 		}
-
 		return $res;
-
 	}
 	public function verifyNumber($data,$userId=NULL){
 		if(!is_array($data)) return ('Invalid Format');
@@ -108,7 +99,6 @@ class Common_m extends CI_Model
 		$country = $this->getCountry($userId);
 		$countryId = $country[0];
 		$prefix = $this->getPrefix($countryId);
-
 		$alPrifix = array();
 		foreach($prefix as $key => $val){
 			foreach($val as $val1){
@@ -118,9 +108,7 @@ class Common_m extends CI_Model
 		foreach($data as $val){
 			$val = trim($val);
 			if(ctype_digit($val)){
-
 				if( strlen($val)== (10+strlen($country[1])) ){
-
 					$numCountryId = substr($val,0,strlen($country[1]));
 					$numPrefix = substr($val,-10,3);
 					$number = substr($val,3);
@@ -136,7 +124,6 @@ class Common_m extends CI_Model
 					else $fault[] = $val;
 				}
 				elseif( strlen($val)==10 ){
-
 					$numPrefix = substr($val,0,3);
 					$number = $val;
 					if( isset($alPrifix[$numPrefix]) ){
@@ -155,7 +142,6 @@ class Common_m extends CI_Model
 				$number_validated['fault'][] = $val;
 			}
 		}
-
 		return $number_validated;
 	}
 	public function getExcecl($data,$folderName){
@@ -166,14 +152,12 @@ class Common_m extends CI_Model
 			mkdir($folderName,0777);
 		}
 		$file = fopen($filePath.'.csv', "w");
-
 		fwrite($file,$data);
 		fclose($file);
 		chmod($filePath.'.csv', 0777);
 		$zip = new ZipArchive();
 		// if($zip->open($filePath."zip")) {echo"file is all good";}
 		// else {echo"bad file status";}
-
 		// exit("deadend debug");
 		if(! $zip->open($filePath.".zip")) {//default
 			exit("here");//buttonDebug
@@ -181,9 +165,7 @@ class Common_m extends CI_Model
 		}//default
 		// $zip->addFile($filePath.'.csv',$fileName.'.csv');
 		// $zip->close();
-
 		// if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off');	}
-
 		header('Pragma: public'); 	// required
 		header('Expires: 0');		// no cache
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -238,7 +220,6 @@ class Common_m extends CI_Model
 			$this->db->where('fld_user_id', $userid);
 			$this->db->where('balance_type', $type);
 			$this->db->update('user_balance', array('amount' => $unit));
-
 			return $this->db->affected_rows() >0;
 		}
 	}
@@ -259,7 +240,6 @@ class Common_m extends CI_Model
 			}
 			return TRUE;
 		}*/
-
 	}
 	public function insert_notice($message ,$type, $action_by,$actin_to=NULL){
 		$array = array('addressbook'=>1,'quejob'=>2,'senderid'=>3,'operator'=>4,'prefix'=>5,'group'=>6,'country'=>7,'key'=>8);
@@ -271,9 +251,7 @@ class Common_m extends CI_Model
 												'date'=>time(),
 												'type'=>$array[$type],
 												));
-
 	}
-
 	public function cronState(){
 		$res = $this->curd_m->get_search("SELECT * FROM system_flag WHERE fld_type IN ('push_api', 'que_job') AND fld_val=0",'object');
 		if($res ==NULL) return TRUE;
@@ -281,14 +259,11 @@ class Common_m extends CI_Model
 			return FALSE;
 		}
 	}
-
-
 	public function todayNotification($priv){
 		$this->priv = $priv;
 		date_default_timezone_set("Asia/Kathmandu");
 		$userid = $this->session->userdata('userId');
 		$query = 'SELECT *  FROM activity_log WHERE user_id='.$userid.' AND date BETWEEN '.strtotime(date("Y/m/d"))." AND ".time();
-
 		$this->dhxload->dhxDynamicLoad(array(
 								'posStart'=>(isset($_GET["posStart"]) )?$_GET['posStart']:0,
 								'count'=>(isset($_GET["count"]) )?$_GET['count']:10,
@@ -297,12 +272,9 @@ class Common_m extends CI_Model
 								'rows'=>'fld_int_id,date,description',
 							));
 	}
-
 	public function todayNoticeCalback($item){
-
 		date_default_timezone_set("Asia/Kathmandu");
 		$item->set_value('date',date('Y-m-d H:i:s',$item->get_value('date')));
-
 	}
 	public function searchNotice($data){
 		$query = '';
@@ -310,7 +282,6 @@ class Common_m extends CI_Model
 		$userid =($data['userid']!=NULL) ?$data['userid']:$this->session->userdata('userId');
 		date_default_timezone_set("Asia/Kathmandu");
 		$query = 'SELECT *  FROM activity_log WHERE user_id='.$userid.' AND date BETWEEN '.$data['from']." AND ".$data['till'];
-
 		/*if($userid ==1){
 			$query = 'SELECT n.fld_int_id AS id, n.description AS description, n.action_by AS actionBy,n.date AS date, n.action_to AS actionTo  FROM notice n INNER JOIN users u WHERE ( n.action_to='.$userid.' OR n.action_by='.$userid.' ) AND u.id=n.action_by AND n.date BETWEEN '.$data['from']." AND ".$data['till'];
 		}
@@ -326,19 +297,16 @@ class Common_m extends CI_Model
 								'rows'=>'fld_int_id,date,description',
 							));
 	}
-
 	public function noticeViewState($id){
 		$id = array_chunk(explode('_',$id),15);
 		foreach($id as $listId){
 			$idImploded = '"'.implode('","', $listId).'"';
-
 			$query = $this->db->query('UPDATE activity_log SET view =1 WHERE fld_int_id IN ('.$idImploded .')');
 			if($this->db->affected_rows() == 0 ) return 'Error : Unable to proceed action';
 		}
 		return 'sucess';
 	}
 	public function setNotice($type,$operatoin,$userid,$clientid,$priv,$extraInfo=NULL){
-
 		$array = array('addressbook'=>1,'quejob'=>2,'senderid'=>3,'key'=>8);
 		$operType = array('enable'=>'enabled','disable'=>'disabled','delete'=>'deleted','approve'=>'approved','disapprove'=>'disapproved','request'=>'requested','add'=>'added','remove'=>'removed');
 		$userName = array();
@@ -346,7 +314,6 @@ class Common_m extends CI_Model
 		foreach($name as $row){
 			$userName[$row->id] = $row->company;
 		}
-
 		$data = array();
 		if($type== 'quejob'){
 			if(in_array('USER_MANAGE',$priv)){
@@ -545,7 +512,6 @@ class Common_m extends CI_Model
 				}
 			}
 		}
-
 		$this->curd_m->get_insert('activity_log',$data,'batch');
 	}
 // model ends

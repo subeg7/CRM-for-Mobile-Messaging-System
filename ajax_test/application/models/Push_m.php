@@ -232,6 +232,8 @@ class Push_m extends CI_Model
 		elseif($item->get_value('state')> 2) $item->set_value('state','<span style="color:red">Disable </br> By Admin</span>');
 		else $item->set_value('state','<span style="color:red">Disable</span>');
 	}
+
+	
 	public function renderSenderId($data){
 		$userid = $this->session->userdata('userId');
 		$query = NULL; $rows=NULL;
@@ -298,6 +300,9 @@ class Push_m extends CI_Model
 								   ));
 
 	}
+
+
+
 	public function senderidCalback($item){
 		if($item->get_value('gpriority')==1) $item->set_value('gateway','Default <span style="color:blue;">[ '.strtoupper($item->get_value('operator')).' ]</span>');
 		else $item->set_value('gateway','<span style="color:green;">'.$item->get_value('gname') .'</span> <span style="color:blue;">[ '.strtoupper($item->get_value('operator')) .' ]</span>');

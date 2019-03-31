@@ -253,7 +253,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 		}else{
 			obj.grid['dhxDynFeild_t'].clearAndLoad('report_c/renderTodayReport/'+obj.prev_id,function(e){
 				if(obj.prev_id==='creditlog'){
-					console.log("this is creditlog excel");
+					console.log("this is creditlog today report");
 					var res = obj.dhx_ajax('report_c/sumCreditlog');
 					if(res!=='none'){
 						res = JSON.parse(res);
@@ -275,6 +275,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 	}
 
 	else  if( id =='excel'){
+		console.log("this is ",obj.prev_id, " excel button");
 		var res = obj.dhx_ajax('common_c/rdyDownload');
 		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
 		console.log("excel detail:>",obj.prev_id);
@@ -282,6 +283,11 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 		if(obj.prev_id == 'sender_id'){
 
 			window.open('push_c/renderSenderId/download?id='+res+'&'+obj.searchQuery,'_blank');
+		}else if(obj.prev_id == 'creditlog'){
+			console.log("call the ajax to download");
+			window.open('button_c/test');
+
+			// window.open('push_c')
 		}
 
 	}
