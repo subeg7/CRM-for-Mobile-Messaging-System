@@ -285,7 +285,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 			window.open('push_c/renderSenderId/download?id='+res+'&'+obj.searchQuery,'_blank');
 		}else if(obj.prev_id == 'creditlog'){
 			console.log("call the ajax to download");
-			window.open('button_c/test');
+			window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
 
 			// window.open('push_c')
 		}

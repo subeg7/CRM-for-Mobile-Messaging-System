@@ -109,6 +109,9 @@ class Dhxload
 			}
 			$csvData .= $this->getCsv();
 		}
+		$csvData;
+		echo" the csvData Set is:".$csvData;
+		exit();
 		return $csvData;
 	}
 
