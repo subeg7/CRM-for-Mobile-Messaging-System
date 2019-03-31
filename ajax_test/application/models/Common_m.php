@@ -171,14 +171,18 @@ class Common_m extends CI_Model
 		fclose($file);
 		chmod($filePath.'.csv', 0777);
 		$zip = new ZipArchive();
-		// if($zip->open($filePath.".zip",TRUE ? ZIPARCHIVE::OVERWRITE : ZIPARCHIVE::CREATE) !== true) {//default
-			// exit("here");//buttonDebug
-			// return FALSE;//default
-		// }//default
-		$zip->addFile($filePath.'.csv',$fileName.'.csv');
-		$zip->close();
+		// if($zip->open($filePath."zip")) {echo"file is all good";}
+		// else {echo"bad file status";}
 
-		if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off');	}
+		// exit("deadend debug");
+		if(! $zip->open($filePath.".zip")) {//default
+			exit("here");//buttonDebug
+			return FALSE;//default
+		}//default
+		// $zip->addFile($filePath.'.csv',$fileName.'.csv');
+		// $zip->close();
+
+		// if(ini_get('zlib.output_compression')) { ini_set('zlib.output_compression', 'Off');	}
 
 		header('Pragma: public'); 	// required
 		header('Expires: 0');		// no cache
@@ -192,8 +196,8 @@ class Common_m extends CI_Model
 		header('Connection: close');
 		readfile($filePath.'.csv');		// push it out
 		// echs;
-		// exit("exiting here");
-		return $filePath.'.csv';
+		exit("");
+		// return $filePath.'.csv';
 	}
 	public function getBalance($userid,$baltype,$operator=NULL){
 		$res = NULL;
