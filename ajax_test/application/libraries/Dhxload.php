@@ -38,11 +38,15 @@ class Dhxload
 	public function getCsv(){
 
 		$row = explode(',',$this->rows);
+		// exit($row);
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
 				$var = $row[$i];
-				$rowXml .=(string) strip_tags($this->data->$var).",";
+				// echo"";
+				echo"<br><br><br><br>var :".$var;
+				echo"<br>this->data->".$var.":".$this->data->$var;
+				$rowXml .=(string) $this->data->$var.",";
 			}
 		}
 		return trim($rowXml,',')."\r\n";
@@ -103,15 +107,20 @@ class Dhxload
 		$this->rows = $data['rows'];
 		$csvData = $data['prinRowsName']."\r\n";
 		foreach ($query->result() as $row){
+			print_r($row);
+			echo"<br><br><br>...................<br><br>";
+			// echo"row:".$row;
 			$this->data = $row;
 			if(isset($data['callback'])){
+				echo"calling callback";
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
+			}else{
+				echo"<br>no callback is called<br><br><br>";
 			}
 			$csvData .= $this->getCsv();
 		}
-		$csvData;
-		echo" the csvData Set is:".$csvData;
-		exit();
+		// echo" the csvData Set is:".$csvData;
+		// exit();
 		return $csvData;
 	}
 
