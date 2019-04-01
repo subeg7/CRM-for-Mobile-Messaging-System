@@ -1,15 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-
 class Dhxload
 {
 	public $data = NULL;
 	public $rows  = NULL;
-
 	public function __get($var){
 		return get_instance()->$var;
 	}
-
 	public function get_value($name){
 		return (isset($this->data->$name))?$this->data->$name:FALSE;
 	}
@@ -18,7 +14,6 @@ class Dhxload
 	}
 	public function getXml(){
 		$row = explode(',',$this->rows);
-
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i==0){
@@ -29,41 +24,35 @@ class Dhxload
 				$var = $row[$i];
 				$rowXml .="<cell>".$this->data->$var."</cell>";
 			}
-
 		}
 		 $rowXml.='</row>';
-
 		return $rowXml;
 	}
 	public function getCsv(){
-
+		// echo"awsome";
 		$row = explode(',',$this->rows);
-		// exit($row);
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
 				$var = $row[$i];
-				// echo"";
-				// echo"<br><br><br><br>var :".$var;
-				// echo"<br>this->data->".$var.":".$this->data->$var;
-				$rowXml .=(string) $this->data->$var.",";
+				$rowXml .=(string) strip_tags($this->data->$var).",";
+				// echo"<br>this->data->".$var." = ".$this->data->$var;
 			}
 		}
+		// echo "<br>..................".$rowXml;
+		// exit(); 
 		return trim($rowXml,',')."\r\n";
 	}
 	/*This function loads the dhtmlx grid dynamically , by this function very heavy data loading in dhtmlx is possible
 	*/
 	public function dhxDynamicLoad($data){
-
 		$xmlData = "<?xml version='1.0' encoding='utf-8' ?>";
 		//define variables from incoming values
 		$posStart = $data['posStart'];
 		$count 	  = $data['count'];
 		//if this is the first query - get total number of records in the query result
-
 		$arr = explode(" ",$data['query']);
 		$frm_tab = FALSE;
-
 		for($i=0; $i < sizeof($arr); $i++){
 			if($arr[$i]=='SELECT') $init_query = $arr[$i].' count(*) as cnt ';
 			else if($arr[$i]=='FROM' || $frm_tab == TRUE){
@@ -71,7 +60,6 @@ class Dhxload
 				$frm_tab = TRUE;
 			}
 		}
-
 		//die($init_query);
 		$query = $this->db->query($init_query );
 		$row = $query->row();
@@ -81,10 +69,8 @@ class Dhxload
 		$query->free_result();
 		//add limits to query to get only rows necessary for the output
 		if($count > 0) $data['query'].= " LIMIT ".$posStart.",".$count;
-
 		//query database to retrieve necessary block of data
 		$query = $this->db->query($data['query']);
-
 		$this->rows = $data['rows'];
 		if(isset($data['userdata'])){
 			$xmlData .= '<userdata name="query">'.$data['userdata'].'</userdata>';
@@ -97,32 +83,32 @@ class Dhxload
 			$xmlData .= $this->getXml();
 		}
 		$xmlData .= "</rows>";
-
 		header("Content-type:text/xml");
 		echo $xmlData;
 	}
-
 	public function getCsvData($data){
+		// echo"query recieved is:<br>".$data['query'];
 		$query = $this->db->query($data['query']);
+		// echo"<br><br>";
+		// print_r($query->result());
+		// exit("terminated");
 		$this->rows = $data['rows'];
 		$csvData = $data['prinRowsName']."\r\n";
 		foreach ($query->result() as $row){
-			print_r($row);
-			echo"<br><br><br>...................<br><br>";
-			// echo"row:".$row;
+			// echo"<br><br>row:=>";
+			// print_r($row);
 			$this->data = $row;
 			if(isset($data['callback'])){
-				echo"calling callback";
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
-			}else{
-				echo"<br>no callback is called<br><br><br>";
 			}
+			// echo"<br><br><br><br>";
 			$csvData .= $this->getCsv();
 		}
+		// exit();
+		// $csvData;
 		// echo" the csvData Set is:".$csvData;
 		// exit();
 		return $csvData;
 	}
-
 	/**end of class***/
 }

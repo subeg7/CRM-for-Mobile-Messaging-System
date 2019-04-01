@@ -335,16 +335,16 @@ class Vas
 			$ribbon= $ribbon.'{id: "report", text: "Report", items: [';
 			if($this->verifyPrivillages(array('PUSH','USER_MANAGE'),$userPriv)){
 				$ribbon= $ribbon.'{type: "block", text: "push report",text_pos: "bottom", mode: "cols", list: [
-					{type: "button", id:"smsreport", text: "Transaction",isbig: true, img: "/reportsTran.png" },
-					{type: "button", id:"creditlog",text: "Credit",isbig: true, img: "/creditreport.png" },
-					{type: "button", id:"sentbox",text: "Sent",isbig: true, img: "/sentbox.png" },';
+					{type: "button", id:"smsreport", text: "Traffic",isbig: true, img: "/reportsTran.png" },
+					{type: "button", id:"creditlog",text: "Purchase",isbig: true, img: "/creditreport.png" },
+					{type: "button", id:"sentbox",text: "Outbox",isbig: true, img: "/sentbox.png" },';
 				if($this->verifyPrivillages(array('USER_MANAGE'),$userPriv)){
 					$ribbon= $ribbon.'{type: "button", id:"dailyreport",text: "Daily",isbig: true, img: "/dailyreport.png" },';
 				}
 				$ribbon= $ribbon.']},';
 			}
 			if($this->verifyPrivillages(array('PULL','USER_MANAGE'),$userPriv)){
-				$ribbon= $ribbon.'{type: "block", text: "pull report",text_pos: "bottom", mode: "cols", list: [
+				$ribbon= $ribbon.'{type: "block", text: "pull report to change",text_pos: "bottom", mode: "cols", list: [
 					{type: "button", id:"pullreport", text: "Report",isbig: true, img: "/pullreport.png" },
 					{type: "button", id:"error_report",text: "Error",isbig: true, img: "/errorreport.png" },
 					{type: "button", id:"feedback",text: "Feedback",isbig: true, img: "/feedback.png" },';
@@ -432,7 +432,7 @@ class Vas
 		$toolbar = $toolbar.'<item id="disselect" type="button" text="Dis-select" img="/disselect.png" />';
 		$toolbar = $toolbar.'<item id="excel" type="button" text="Excel" img="/excel.png" />';
 
-		$toolbar = $toolbar.'<item id="excel_outbox" type="button" text="Download Outbox in Excel" img="/excel.png" />';
+		$toolbar = $toolbar.'<item id="excel_outbox" type="button" text="Download Outbox" img="/excel.png" />';
 		
 		$toolbar = $toolbar.'<item id="search" type="button" text="Search" img="/search.png" />';
 		$toolbar = $toolbar.'</toolbar>';

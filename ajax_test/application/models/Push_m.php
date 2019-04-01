@@ -298,7 +298,6 @@ class Push_m extends CI_Model
 									'rows'=>$rows,
 									'userdata'=>(sizeof($searchArr)>0)?implode('__',$searchArr):'',
 								   ));
-
 	}
 
 
