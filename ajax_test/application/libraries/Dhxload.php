@@ -101,13 +101,9 @@ class Dhxload
 			if(isset($data['callback'])){
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
 			}
-			// echo"<br><br><br><br>";
 			$csvData .= $this->getCsv();
 		}
-		// exit();
-		// $csvData;
-		// echo" the csvData Set is:".$csvData;
-		// exit();
+		
 		return $csvData;
 	}
 	/**end of class***/
