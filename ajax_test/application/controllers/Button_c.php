@@ -51,6 +51,10 @@ class Button_c extends ESY_Controller {
 	}
 
 
+
+
+//below code not important
+
 	public function renderToday($type,$priv,$userid){
 		$userid = ($userid==NULL)?$this->session->userdata('userId'):$userid;
 		$this->priv= $priv;

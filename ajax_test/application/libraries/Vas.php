@@ -432,7 +432,7 @@ class Vas
 		$toolbar = $toolbar.'<item id="disselect" type="button" text="Dis-select" img="/disselect.png" />';
 		$toolbar = $toolbar.'<item id="excel" type="button" text="Excel" img="/excel.png" />';
 
-		$toolbar = $toolbar.'<item id="excel_new" type="button" text="Download_excel_new" img="/excel.png" />';
+		$toolbar = $toolbar.'<item id="excel_outbox" type="button" text="Download Outbox in Excel" img="/excel.png" />';
 		
 		$toolbar = $toolbar.'<item id="search" type="button" text="Search" img="/search.png" />';
 		$toolbar = $toolbar.'</toolbar>';

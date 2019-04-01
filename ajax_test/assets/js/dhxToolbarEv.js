@@ -281,16 +281,23 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 		console.log("excel detail:>",obj.prev_id);
 
 		if(obj.prev_id == 'sender_id'){
-
 			window.open('push_c/renderSenderId/download?id='+res+'&'+obj.searchQuery,'_blank');
 		}else if(obj.prev_id == 'creditlog'){
 			console.log("call the ajax to download");
 			window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
-
-			// window.open('push_c')
 		}
 
 	}
+
+	else if(id=='excel_outbox'){
+		console.log("this is ",obj.prev_id, " excel button");
+		var res = obj.dhx_ajax('common_c/rdyDownload');
+
+		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
+		window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
+	}
+
+	
 	else if( id =='approve' || id == 'disapprove'){
 		if(obj.prev_id == 'sender_id'){
 			var selId = obj.getSelected('dhxDynFeild','multiple');

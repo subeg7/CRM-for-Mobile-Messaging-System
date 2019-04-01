@@ -146,7 +146,9 @@ class Common_m extends CI_Model
 	}
 	public function getExcecl($data,$folderName){
 		$folderName = "download/".$folderName;
-		$fileName = time();
+		$fileName = time();//default
+		// $fileName = "sfsdkfjls_sdfskdjfsdfjslkdfj_sdlkfjsdfksjdfhksdfh_dsjfsdklfjsldfkj_3234234_4234234234_".time();
+			// $fileName= "id_2000_"
 		$filePath = $folderName.'/'.$fileName;
 		if(!is_dir($folderName)){
 			mkdir($folderName,0777);
