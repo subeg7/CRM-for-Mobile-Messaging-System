@@ -30,18 +30,20 @@ class Dhxload
 	}
 	public function getCsv(){
 		// echo"<br><br>";
+		// echo"this->rows:".$this->rows;
+		// exit();
 		$row = explode(',',$this->rows);
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
 				$var = $row[$i];
-				$rowXml .=(string) strip_tags($this->data->$var).",";
-				// echo"<br>this->data->".$var." = ".$this->data->$var;
+				$rowXml .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 			}
 		}
-		// echo "<br>..................".$rowXml;
-		// exit(); 
-		return trim($rowXml,',')."\r\n";
+		$ret = trim($rowXml,',')."\r\n";
+		// echo"ret:".$ret;
+		// exit();
+		return $ret;
 	}
 	/*This function loads the dhtmlx grid dynamically , by this function very heavy data loading in dhtmlx is possible
 	*/
@@ -109,11 +111,14 @@ class Dhxload
 			if(isset($data['callback'])){
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
 			}
+			// echo"<br><br>".$this->getCsv();
 			$csvData .= $this->getCsv();
 		}
 		// echo $csvData;
 		// exit();
 		return $csvData;
+
+
 	}
 	/**end of class***/
 }

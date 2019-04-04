@@ -155,9 +155,14 @@ class Common_m extends CI_Model
 			mkdir($folderName,0777);
 		}
 		$file = fopen($filePath.'.csv', "w");
+
 		fwrite($file,$data);
+		// echo"awsome"."<br><br><br>".$data;
+		// exit();
 		fclose($file);
 		chmod($filePath.'.csv', 0777);
+
+		
 		$zip = new ZipArchive();
 		// if($zip->open($filePath."zip")) {echo"file is all good";}
 		// else {echo"bad file status";}
