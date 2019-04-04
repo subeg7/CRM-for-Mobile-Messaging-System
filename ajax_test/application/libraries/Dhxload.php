@@ -29,7 +29,7 @@ class Dhxload
 		return $rowXml;
 	}
 	public function getCsv(){
-		// echo"awsome";
+		// echo"<br><br>";
 		$row = explode(',',$this->rows);
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
@@ -86,6 +86,14 @@ class Dhxload
 		header("Content-type:text/xml");
 		echo $xmlData;
 	}
+
+
+	public function getFileName($type){
+		$fileName = $id."_".$company."_".$type."_".$time;
+		return "awsome file name";
+	}
+
+
 	public function getCsvData($data){
 		// echo"query recieved is:<br>".$data['query'];
 		$query = $this->db->query($data['query']);
@@ -103,7 +111,8 @@ class Dhxload
 			}
 			$csvData .= $this->getCsv();
 		}
-		
+		// echo $csvData;
+		// exit();
 		return $csvData;
 	}
 	/**end of class***/
