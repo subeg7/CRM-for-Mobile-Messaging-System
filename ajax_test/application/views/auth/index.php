@@ -417,6 +417,8 @@ $this->load->view('layout/header.php');
 			xml_link			: 'sysManage_c/renderGroup'
 		 });
 	}
+
+	
 	InitObj.prototype.prefix = function (id){
 		this.showItem_toolBar('toolbar',['newprefix','edit','delete','disselect']);
 		this.create_dhx_grid({
@@ -459,6 +461,9 @@ $this->load->view('layout/header.php');
 			xml_link			: 'sysManage_c/renderFeature'
 		 });
 	}
+
+
+
 	InitObj.prototype.country = function (id){
 		this.showItem_toolBar('toolbar',['newcountry','edit','delete','disselect']);
 		this.create_dhx_grid({
@@ -473,6 +478,8 @@ $this->load->view('layout/header.php');
 			xml_link			: 'sysManage_c/renderCountry'
 		 });
 	}
+
+
 	InitObj.prototype.transaction = function (id){
 		this.showItem_toolBar('toolbar',['todayReport','search']);
 		this.create_dhx_grid({
