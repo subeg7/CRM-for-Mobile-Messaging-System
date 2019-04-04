@@ -12,6 +12,8 @@ class Dhxload
 	public function set_value($name, $value){
 		$this->data->$name = $value;
 	}
+
+	
 	public function getXml(){
 		$row = explode(',',$this->rows);
 		$rowXml = '';
@@ -36,10 +38,15 @@ class Dhxload
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
+
+
+
 				$var = $row[$i];
 				$rowXml .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 			}
 		}
+		// echo "<br>..................".$rowXml;
+		// exit(); 
 		$ret = trim($rowXml,',')."\r\n";
 		// echo"ret:".$ret;
 		// exit();

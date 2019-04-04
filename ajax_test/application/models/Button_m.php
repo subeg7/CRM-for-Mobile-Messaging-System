@@ -48,7 +48,10 @@ class Button_m	 extends CI_Model
 
 			// $fileName 
 
-			//die(var_dump($query));
+
+
+
+			// die(var_dump($query));
 			if($data['type']=='download'){
 				$res = $this->dhxload->getCsvData(array(
 											// 'callback'=>array($this,'senderidCalback'),
