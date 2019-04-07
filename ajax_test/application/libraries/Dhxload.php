@@ -109,10 +109,10 @@ class Dhxload
 	}
 
 
-	public function getFileName($type){
-		$fileName = $id."_".$company."_".$type."_".$time;
-		return "awsome file name";
-	}
+	// public function getFileName($type){
+	// 	$fileName = $id."_".$company."_".$type."_".$time;
+	// 	return "awsome file name";
+	// }
 
 
 	public function getCsvData($data){

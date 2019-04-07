@@ -24,6 +24,7 @@ class Report_c extends ESY_Controller {
 		}
 	}
 	public function renderTodayReport($type,$userid=NULL){
+		
 		$userid = ($userid==NULL)?$this->session->userdata('userId'):$userid;
 		$priv = $this->vas->getUserPrivileges($userid);
 		$this->report_m->renderTodayReport($type,$priv,$userid );

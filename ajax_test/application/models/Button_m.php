@@ -62,9 +62,13 @@ class Button_m	 extends CI_Model
 
 			// $fileName 
 
+			$folderName = $this->curd_m->getData('users',array('id'=>$this->session->userdata('userId') ),'object');
 
-
-
+			// $toSend = $folderName[0];
+			// print_r($toSend);
+			// $fileName = $toSend->id;
+			// $fileName = $toSend->username."_".$toSend->company."_".time();
+			// exit($fileName);
 			// die(var_dump($query));
 			if($data['type']=='download'){
 				$res = $this->dhxload->getCsvData(array(
@@ -78,14 +82,16 @@ class Button_m	 extends CI_Model
 											// 	exit("sdfs");
 
 
-				$folderName = $this->curd_m->getData('users',array('id'=>$this->session->userdata('userId') ),'object');
+				
 
 
 
 
 
-				if($res != NULL) $res = $this->common_m->getExcecl($res, $folderName[0]->fld_transaction_id);
-				die( var_dump($res));
+				if($res != NULL) $res = $this->common_m->getExcecl($res, $folderName[0]);
+				die( var_dump($res));//default
+				// if($res != NULL) $res = $this->common_m->getExcecl($res, );
+				// die( var_dump($res));//modified for folder name
 			}
 		}
 
