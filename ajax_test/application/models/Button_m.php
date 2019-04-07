@@ -30,7 +30,7 @@ class Button_m	 extends CI_Model
 			}
 			elseif(!in_array('USER_MANAGE',$data['privileges'])){
 				$reseller_id = 39;
-				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company FROM outbox o INNER JOIN users u WHERE o.fld_reseller_id='.$reseller_id.' AND u.id = o.fld_int_userid AND o.fld_int_ondate BETWEEN 0 AND '.time()." ORDER BY o.fld_int_ondate DESC";
+				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company FROM outbox o INNER JOIN users u WHERE o.fld_reseller_id= u.fld_reseller_id AND u.id = o.fld_int_userid AND  o.fld_int_ondate BETWEEN 0 AND '.time()." ORDER BY o.fld_int_ondate DESC";
 
 				// exit($query);
 				// $rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';//default
@@ -39,6 +39,9 @@ class Button_m	 extends CI_Model
 				// $prinRowsName = 'Sender Id,Message,Type/Count,Cell No.,Date,No-user_manage_priv';
 
 			}
+
+			echo $query;
+			exit();
 
 
 
