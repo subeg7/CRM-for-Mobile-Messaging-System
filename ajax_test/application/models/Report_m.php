@@ -13,6 +13,8 @@ class Report_m extends CI_Model
 		$this->endDate = 0;
 	}
 	public function renderTodayReport($type,$priv,$userid){
+		// echo"awsome";
+		// exit();
 		$userid = ($userid==NULL)?$this->session->userdata('userId'):$userid;
 		$this->priv= $priv;
 		if($type == 'creditlog'){ // credit log  report
@@ -42,6 +44,8 @@ class Report_m extends CI_Model
 				$rows = 'fld_int_id,company,fld_chr_sender,fld_chr_message,cell,ondate,fld_user_data';
 			}
 			elseif(!in_array('USER_MANAGE',$priv)){
+				// echo"awsome";
+				// exit();
 				$query ='SELECT * FROM outbox WHERE fld_int_userid='.$userid.' AND fld_int_ondate BETWEEN '.strtotime(date("Y/m/d"))." AND ".time()." ORDER BY fld_int_ondate DESC";
 				$rows = 'fld_int_id,fld_chr_sender,fld_chr_message,typeCount,cell,ondate,fld_user_data';
 			}

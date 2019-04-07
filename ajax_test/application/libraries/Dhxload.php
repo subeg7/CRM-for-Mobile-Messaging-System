@@ -3,6 +3,7 @@ class Dhxload
 {
 	public $data = NULL;
 	public $rows  = NULL;
+	public $xmlData =NULL;
 	public function __get($var){
 		return get_instance()->$var;
 	}
@@ -30,6 +31,8 @@ class Dhxload
 		 $rowXml.='</row>';
 		return $rowXml;
 	}
+
+
 	public function getCsv(){
 		// echo"<br><br>";
 		// echo"this->rows:".$this->rows;
@@ -54,7 +57,7 @@ class Dhxload
 	}
 	/*This function loads the dhtmlx grid dynamically , by this function very heavy data loading in dhtmlx is possible
 	*/
-	public function dhxDynamicLoad($data){
+	public function dhxDynamicLoad($data,$display=true){
 		$xmlData = "<?xml version='1.0' encoding='utf-8' ?>";
 		//define variables from incoming values
 		$posStart = $data['posStart'];
@@ -92,8 +95,17 @@ class Dhxload
 			$xmlData .= $this->getXml();
 		}
 		$xmlData .= "</rows>";
-		header("Content-type:text/xml");
-		echo $xmlData;
+		
+
+		if($display ){
+			header("Content-type:text/xml");
+			// echo htmlspecialchars($xmlData);
+			
+			echo $xmlData;
+		}else{
+			echo htmlspecialchars($xmlData);
+			$this->xmlData = $xmlData;
+		}
 	}
 
 

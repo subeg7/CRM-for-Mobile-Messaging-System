@@ -250,23 +250,38 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 	else if( id =='todayReport'){
 		if(obj.prev_id =='detailsPull'){
 			obj.grid['dhxDynFeild_t'].clearAndLoad('report_c/detailPull?today=today');
+			obj.grid['dhxDynFeild_t'].toExcel("https://dhtmlxgrid.appspot.com/export/excel");
+			
+		}else if(obj.prev_id =='sentbox'){
+			obj.grid['dhxDynFeild_t'].clearAndLoad('button_c/test/'+obj.prev_id,function(e){
+				console.log("sentbox grid loaded");
+				// obj.grid['dhxDynFeild_t'].toExcel("https://dhtmlxgrid.appspot.com/export/excel");
+
+			} );
 		}else{
 			obj.grid['dhxDynFeild_t'].clearAndLoad('report_c/renderTodayReport/'+obj.prev_id,function(e){
-				if(obj.prev_id==='creditlog'){
-					console.log("this is creditlog today report");
-					var res = obj.dhx_ajax('report_c/sumCreditlog');
-					if(res!=='none'){
-						res = JSON.parse(res);
-						var detail=[];
-						var keys = Object.keys(res);
-						for( i=0;i<keys.length; i++){
-							if(keys[i]==1)	detail.push('<span style="color:blue;">Total Alloted :</span> '+res[keys[i]]);
-							else if(keys[i]==2)	detail.push('<span style="color:blue;">Total Deduced :</span> '+res[keys[i]]);
-						}
-						$('#extraData').empty().append('<p>'+detail.join(' || ')+'</p>');
+				console.log("grid loaded");
+				obj.grid['dhxDynFeild_t'].toExcel("https://dhtmlxgrid.appspot.com/export/excel");
+				// if(obj.prev_id==='creditlog'){
+				// 	// console.log("this is creditlog today report");
+				// 	var res = obj.dhx_ajax('report_c/sumCreditlog');
+				// 	if(res!=='none'){
+				// 		console.log(res);
 
-					}
-				}
+				// 		// return;
+				// 		// res = JSON.parse(res);
+
+				// 		// console.log( )
+				// 		// var detail=[];
+				// 		// var keys = Object.keys(res);
+				// 		// for( i=0;i<keys.length; i++){
+				// 			// if(keys[i]==1)	detail.push('<span style="color:blue;">Total Alloted :</span> '+res[keys[i]]);
+				// 			// else if(keys[i]==2)	detail.push('<span style="color:blue;">Total Deduced :</span> '+res[keys[i]]);
+				// 		// }
+				// 		// $('#extraData').empty().append('<p>'+detail.join(' || ')+'</p>');
+
+				// 	}
+				// }
 			});
 
 		}

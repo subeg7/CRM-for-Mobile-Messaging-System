@@ -616,6 +616,7 @@ $this->load->view('layout/header.php');
 			return true;
 		});
 	}
+	
 	InitObj.prototype.dynamicGrid = function (data){
 		//this.showItem_toolBar('toolbar');
 		var arr = data.header.split(',');
