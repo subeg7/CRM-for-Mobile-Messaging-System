@@ -16,6 +16,9 @@ class Button_m	 extends CI_Model
 
 	public function renderReport($data){
 		$userid = $this->session->userdata('userId');
+		// echo"wow";exit();
+		// print_r($this->session->userdata);
+		// exit(); 
 		$query = NULL; $rows=NULL;
 		$this->priv = $data['privileges'];
 		$searchArr = array();
@@ -64,18 +67,24 @@ class Button_m	 extends CI_Model
 
 			$folderName = $this->curd_m->getData('users',array('id'=>$this->session->userdata('userId') ),'object');
 
-			// $toSend = $folderName[0];
-			// print_r($toSend);
-			// $fileName = $toSend->id;
-			// $fileName = $toSend->username."_".$toSend->company."_".time();
-			// exit($fileName);
-			// die(var_dump($query));
+			
+
+			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,Tuesday 02 March 2019"."\r\n"
+				.'Address :'.'"'.(string) strip_tags($this->session->userdata('address')).'"'.","."\r\n".
+				"Phone: 984001231,,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
+
+			$csvFooter ="\r\n"."\r\n".",,Total Records:15"."\r\n"."\r\n"."Report Generated on:".time();
+
+
+
 			if($data['type']=='download'){
 				$res = $this->dhxload->getCsvData(array(
 											// 'callback'=>array($this,'senderidCalback'),
 											'query'=>$query,
 											'rows'=>$rows,
-											'prinRowsName'=>$prinRowsName
+											'prinRowsName'=>$prinRowsName,
+											'csvHeader'=>$csvHeader,
+											'csvFooter'=>$csvFooter,
 											));
 
 											// echo"calling the dhx load sucess";

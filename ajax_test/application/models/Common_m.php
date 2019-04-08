@@ -147,9 +147,6 @@ class Common_m extends CI_Model
 	public function getExcecl($data,$filenFolder){
 		$folderName = "download/".$filenFolder->fld_transaction_id;
 		$fileName = $filenFolder->username."_".$filenFolder->company."_".time();
-		// $fileName = $this->dhxload->getFileName("")
-		// $fileName = "sfsdkfjls_sdfskdjfsdfjslkdfj_sdlkfjsdfksjdfhksdfh_dsjfsdklfjsldfkj_3234234_4234234234_".time();
-			// $fileName= "id_2000_"
 		$filePath = $folderName.'/'.$fileName;
 		if(!is_dir($folderName)){
 			mkdir($folderName,0777);

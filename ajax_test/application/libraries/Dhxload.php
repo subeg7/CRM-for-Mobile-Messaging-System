@@ -14,7 +14,9 @@ class Dhxload
 		$this->data->$name = $value;
 	}
 
-	
+	// public function 
+
+		
 	public function getXml(){
 		$row = explode(',',$this->rows);
 		$rowXml = '';
@@ -122,7 +124,8 @@ class Dhxload
 		// print_r($query->result());
 		// exit("terminated");
 		$this->rows = $data['rows'];
-		$csvData = $data['prinRowsName']."\r\n";
+		$csvData = $data['csvHeader'];
+		$csvData .= $data['prinRowsName']."\r\n";
 		foreach ($query->result() as $row){
 			// echo"<br><br>row:=>";
 			// print_r($row);
@@ -133,6 +136,7 @@ class Dhxload
 			// echo"<br><br>".$this->getCsv();
 			$csvData .= $this->getCsv();
 		}
+		$csvData.=$data['csvFooter'];
 		// echo $csvData;
 		// exit();
 		return $csvData;

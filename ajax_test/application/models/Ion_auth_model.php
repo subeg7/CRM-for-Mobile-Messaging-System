@@ -966,7 +966,7 @@ class Ion_auth_model extends CI_Model
 
 		$this->trigger_events('extra_where');
 
-		$query = $this->db->select($this->identity_column . ', email, id,fld_reseller_id, password, active, last_login')
+		$query = $this->db->select($this->identity_column . ', email, id,fld_reseller_id, password, active, last_login,address,contact_number,company')
 		                  ->where($this->identity_column, $identity)
 		                  ->limit(1)
 		    			  ->order_by('id', 'desc')
@@ -986,6 +986,7 @@ class Ion_auth_model extends CI_Model
 
 		if ($query->num_rows() === 1)
 		{
+
 			$user = $query->row();
 
 			// $password = $this->hash_password_db($user->id, $password);//default
@@ -1732,7 +1733,10 @@ class Ion_auth_model extends CI_Model
 		    $this->identity_column 	=> $user->{$this->identity_column},
 		    'email'                	=> $user->email,
 		    'userId'              	=> $user->id, //everyone likes to overwrite id so we'll use user_id
-
+		    'address'		=>$user->address,
+		    'company'		=>$user->company,
+		    'address'		=>$user->address,
+		    'contact_number'=>$user->contact_number,
 		);
 
 		$this->session->set_userdata($session_data);

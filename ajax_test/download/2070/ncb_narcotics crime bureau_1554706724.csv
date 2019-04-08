@@ -1,0 +1,17 @@
+UserName, ,ncb, , ,From,Tuesday 02 March
+Sender Id,Message,Char Count,Chunk Cell,Date
+"33234","jhjhjhjhjhjhjhjhhk","1-142","NTC : 1","1553769047"
+"33234","outbox test","1-149","NTC : 1","1553770079"
+"33234","sdfsdfsfsfds","1-148","NTC : 1","1553770290"
+"33234","testing the message","1-141","NTC : 1","1554013663"
+"33234","sdfsdfsdfsdf","1-148","NTC : 1","1554098204"
+"33234","will this get reported in excel file","1-124","NTC : 1","1554111549"
+"33234,smsSewa","chunk message test","1-142","AXIATA : 3,NTC : 1","1554113873"
+"33234","Lorem Ipsum is simply dummy","4-36","NTC : 1","1554114996"
+"33234","releas,e of Letraset, sheets contai,ning","1-7","NTC : 1","1554115077"
+"33234","comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,comma,","1-124
+","NTC : 1","1554369606"
+"33234","sdfsfsdfsdfsdf","1-146","NTC : 1","1554619189"
+"33234","test the message by the command","1-129","NTC : 1","1554632192"
+"33234,smsSewa","ह्एल्ल्ओ अर्ए य्ओउ व्ओर्क्इङ् थ्एर्ए अन्द् य्ओउ ल्ओओक् ग्ओओद् !क्द्फ् स्ल्द्क्फ्स् ल्द्फ्क्स्द्ल् फ्क्स्ज्द्ल्फ्","2-22","NTC : 2,AXIATA : 2","1554634563"
+"smsSewa","ह्एल्ल्ओ अर्ए य्ओउ व्ओर्क्इङ् थ्एर्ए अन्द् य्ओउ ल्ओओक् ग्ओओद् !क्द्फ् स्ल्द्क्फ्स् ल्द्फ्क्स्द्ल् फ्क्स्ज्द्ल्फ्","2-22","AXIATA : 1","1554634620"
