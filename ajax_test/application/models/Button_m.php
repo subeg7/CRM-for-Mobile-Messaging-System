@@ -69,11 +69,13 @@ class Button_m	 extends CI_Model
 
 			
 
+			// print_r($this->session->userdata('address'));exit();
 			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,Tuesday 02 March 2019"."\r\n"
-				.'Address :'.'"'.(string) strip_tags($this->session->userdata('address')).'"'.","."\r\n".
-				"Phone: 984001231,,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
+				.'Address :'. strip_tags($this->session->userdata('address')).","."\r\n".
+				"Phone:".$this->session->userdata('contact_number').",,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
 
-			$csvFooter ="\r\n"."\r\n".",,Total Records:15"."\r\n"."\r\n"."Report Generated on:".time();
+			$csvFooter_1 ="\r\n"."\r\n".",,Total Records:";
+			$csvFooter_2="\r\n"."\r\n"."Report Generated on:".time();
 
 
 
@@ -84,7 +86,8 @@ class Button_m	 extends CI_Model
 											'rows'=>$rows,
 											'prinRowsName'=>$prinRowsName,
 											'csvHeader'=>$csvHeader,
-											'csvFooter'=>$csvFooter,
+											'csvFooter_1'=>$csvFooter_1,
+											'csvFooter_2'=>$csvFooter_2,
 											));
 
 											// echo"calling the dhx load sucess";

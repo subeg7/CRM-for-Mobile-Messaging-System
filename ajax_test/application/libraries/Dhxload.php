@@ -118,6 +118,7 @@ class Dhxload
 
 
 	public function getCsvData($data){
+		$rowCount=0;
 		// echo"query recieved is:<br>".$data['query'];
 		$query = $this->db->query($data['query']);
 		// echo"<br><br>";
@@ -127,6 +128,7 @@ class Dhxload
 		$csvData = $data['csvHeader'];
 		$csvData .= $data['prinRowsName']."\r\n";
 		foreach ($query->result() as $row){
+			$rowCount++;
 			// echo"<br><br>row:=>";
 			// print_r($row);
 			$this->data = $row;
@@ -136,7 +138,7 @@ class Dhxload
 			// echo"<br><br>".$this->getCsv();
 			$csvData .= $this->getCsv();
 		}
-		$csvData.=$data['csvFooter'];
+		$csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
 		// echo $csvData;
 		// exit();
 		return $csvData;
