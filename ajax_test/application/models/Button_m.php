@@ -12,6 +12,8 @@ class Button_m	 extends CI_Model
 		$this->priv = NULL;
 	}
 
+	// public fun
+
 
 
 	public function renderReport($data){
@@ -74,8 +76,12 @@ class Button_m	 extends CI_Model
 				.'Address :'. strip_tags($this->session->userdata('address')).","."\r\n".
 				"Phone:".$this->session->userdata('contact_number').",,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
 
+			date_default_timezone_set("Asia/Kathmandu");
+
 			$csvFooter_1 ="\r\n"."\r\n".",,Total Records:";
-			$csvFooter_2="\r\n"."\r\n"."Report Generated on:".time();
+			$csvFooter_2="\r\n"."\r\n"."Report Generated on:".date('l jS  F Y h:i:s A');
+
+			// echo"footer_2".$csvFooter_2;exit();
 
 
 
