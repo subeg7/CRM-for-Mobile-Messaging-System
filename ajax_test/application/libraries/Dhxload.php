@@ -56,10 +56,10 @@ class Dhxload
 				$var = $row[$i];
 				if($var=="fld_int_ondate"){
 					//convert milliseconds to seconds then to date
-					$this->data->$var=date('d F, Y h:i A',$this->data->$var);
-					$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
+					$goodDate=date('d F, Y h:i A',$this->data->$var);
+					$rowCsv .= '"'.$goodDate.'"'.",";
 
-				}if($var=="fld_int_cell_no"){
+				}else if($var=="fld_int_cell_no"){
 
 					$ntc= array_keys($this->totalOperCellCount)[0];
 					$axiata= array_keys($this->totalOperCellCount)[1];

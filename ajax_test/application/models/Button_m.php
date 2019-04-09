@@ -108,8 +108,8 @@ class Button_m	 extends CI_Model
 
 
 
-
-				if($res != NULL) $res = $this->common_m->getExcecl($res, $folderName[0]);
+				$reportType = "Outbox";
+				if($res != NULL) $res = $this->common_m->getExcecl($res, $folderName[0],$reportType);
 				die( var_dump($res));//default
 				// if($res != NULL) $res = $this->common_m->getExcecl($res, );
 				// die( var_dump($res));//modified for folder name

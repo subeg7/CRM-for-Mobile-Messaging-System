@@ -144,9 +144,9 @@ class Common_m extends CI_Model
 		}
 		return $number_validated;
 	}
-	public function getExcecl($data,$filenFolder){
+	public function getExcecl($data,$filenFolder,$reportType = NULL){
 		$folderName = "download/".$filenFolder->fld_transaction_id;
-		$fileName = $filenFolder->username."_".$filenFolder->company."_".time();
+		$fileName = $filenFolder->username."_".$reportType."_".$filenFolder->company."_".date('l_jS_F Y_').time();
 		$filePath = $folderName.'/'.$fileName;
 		if(!is_dir($folderName)){
 			mkdir($folderName,0777);
