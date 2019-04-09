@@ -73,8 +73,11 @@ class Button_m	 extends CI_Model
 
 			// print_r($this->session->userdata('address'));exit();
 			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,Tuesday 02 March 2019"."\r\n"
-				.'Address :'. strip_tags($this->session->userdata('address')).","."\r\n".
+				.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".//comma in address mutates the to be downloaded CSV Badly
 				"Phone:".$this->session->userdata('contact_number').",,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
+
+				// echo"".$csvHeader;
+				// exit();
 
 			date_default_timezone_set("Asia/Kathmandu");
 

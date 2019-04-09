@@ -180,7 +180,7 @@ class Dhxload
 
 		// exit();
 		$csvFooter=
-			 "\r\n"."\r\n".",TOTAL,".$this->totalOperCellCount[$ntc].",".$this->totalOperCellCount[$axiata].",".$this->totalOperCellCount[$smart].
+			 "\r\n"."\r\n"."TOTAL,,".$this->totalOperCellCount[$ntc].",".$this->totalOperCellCount[$axiata].",".$this->totalOperCellCount[$smart].
 
 			"\r\n"."\r\n"."Total Records:".$rowCount.
 
