@@ -4,6 +4,9 @@ class Dhxload
 	public $data = NULL;
 	public $rows  = NULL;
 	public $xmlData =NULL;
+
+	public $totalOperCellCount=array("NTC "=>0,"AXIATA "=>0,"SMART "=>0);//a space is required after each key;
+
 	public function __get($var){
 		return get_instance()->$var;
 	}
@@ -38,15 +41,41 @@ class Dhxload
 
 
 	public function getCsv($csvRowId=0){
+
+		// $operator = "AXIATA";
+		// $this->operCellCount[$operator]+=5;
+		// print_r($this->operCellCount["AXIATA"]);
+		// exit();
 		
 		$row = explode(',',$this->rows);
-		$rowCsv = "".$csvRowId.",";
+		$rowCsv = '"'.$csvRowId.'"'.",";
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
 				$var = $row[$i];
 				if($var=="fld_int_ondate"){
 					//convert milliseconds to seconds then to date
 					$this->data->$var=date('d F, Y h:i A',$this->data->$var);
+				}if($var="fld_int_cell_no"){
+
+					$ntc= array_keys($this->totalOperCellCount)[0];
+					$axiata= array_keys($this->totalOperCellCount)[1];
+					$smart= array_keys($this->totalOperCellCount)[2];
+
+					$this->data->$ntc = NULL;
+					$this->data->$axiata = NULL;
+					$this->data->$smart = NULL;
+
+					foreach(explode(",",$this->data->$var) as $cell){
+						$operInfo = explode(":", $cell);
+						$operator = (string)$operInfo[0];
+						$cellCount = $operInfo[1];
+						$this->data->$operator=$cellCount;
+						$this->totalOperCellCount[$operator]+=$cellCount;
+						
+					}
+					echo"ntc:".$this->data->$ntc.","."axiata:",$this->data->$axiata.","."smart:".$this->data->$smart;
+					// print_r($cellInfo);
+					// exit("<br>termination");
 				}
 				// echo"     ".$this->data->$var;
 				$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
@@ -134,9 +163,10 @@ class Dhxload
 			if(isset($data['callback'])){
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
 			}
-			// echo"<br><br>".$this->getCsv();
+			// echo"<br><br><br>".$this->getCsv($rowCount);
 			$csvData .= $this->getCsv($rowCount);
 		}
+		// exit();
 		$csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
 		// echo $csvData;
 		// exit();
