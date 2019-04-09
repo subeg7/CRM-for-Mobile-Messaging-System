@@ -37,23 +37,23 @@ class Dhxload
 	}
 
 
-	public function getCsv(){
+	public function getCsv($csvRowId=0){
 		
 		$row = explode(',',$this->rows);
-		$rowXml = '';
+		$rowCsv = "".$csvRowId.",";
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
 				$var = $row[$i];
 				if($var=="fld_int_ondate"){
 					//convert milliseconds to seconds then to date
-					$this->data->$var=date('d F, Y',$this->data->$var);
+					$this->data->$var=date('d F, Y h:i A',$this->data->$var);
 				}
 				// echo"     ".$this->data->$var;
-				$rowXml .= '"'.(string) strip_tags($this->data->$var).'"'.",";
+				$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 			}
 		}
 		// exit();
-		$ret = trim($rowXml,',')."\r\n";
+		$ret = trim($rowCsv,',')."\r\n";
 		return $ret;
 	}
 	/*This function loads the dhtmlx grid dynamically , by this function very heavy data loading in dhtmlx is possible
@@ -135,7 +135,7 @@ class Dhxload
 				call_user_func(array($data['callback'][0],$data['callback'][1]),$this);
 			}
 			// echo"<br><br>".$this->getCsv();
-			$csvData .= $this->getCsv();
+			$csvData .= $this->getCsv($rowCount);
 		}
 		$csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
 		// echo $csvData;

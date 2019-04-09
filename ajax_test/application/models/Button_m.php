@@ -51,7 +51,7 @@ class Button_m	 extends CI_Model
 				// exit($query);
 				// $rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';//default
 				$rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_msg_number,fld_int_cell_no,fld_int_ondate';
-				$prinRowsName = 'Sender Id,Message,Char Count,Chunk Cell,Date';
+				$prinRowsName = 'S.N,Sender Id,Message,Char Count,Chunk Cell,Date';
 				// $prinRowsName = 'Sender Id,Message,Type/Count,Cell No.,Date,No-user_manage_priv';
 
 			}
