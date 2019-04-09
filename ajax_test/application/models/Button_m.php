@@ -50,8 +50,8 @@ class Button_m	 extends CI_Model
 
 				// exit($query);
 				// $rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';//default
-				$rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_msg_number,fld_int_ondate,fld_int_cell_no';
-				$prinRowsName = 'S.N,Sender Id,Message,Char Count,Chunk Cell,Date,NTC,AXIATA,SMARTCELL';
+				$rows = 'fld_int_id,fld_chr_sender,fld_int_cell_no,fld_chr_message,fld_msg_number,fld_int_ondate';
+				$prinRowsName = 'S.N,Sender Id,NTC,AXIATA,SMARTCELL,Message,Char Count,Date';
 				// $prinRowsName = 'Sender Id,Message,Type/Count,Cell No.,Date,No-user_manage_priv';
 
 			}
@@ -78,8 +78,8 @@ class Button_m	 extends CI_Model
 
 			date_default_timezone_set("Asia/Kathmandu");
 
-			$csvFooter_1 ="\r\n"."\r\n".",,Total Records:";
-			$csvFooter_2="\r\n"."\r\n"."Report Generated on:".date('l jS  F Y h:i:s A');
+			// $csvFooter_1 ="\r\n"."\r\n".",,,,,Total Records:";
+			// $csvFooter_2="\r\n"."\r\n"."Report Generated on:".date('l jS  F Y h:i:s A');
 
 			// echo"footer_2".$csvFooter_2;exit();
 
@@ -92,8 +92,8 @@ class Button_m	 extends CI_Model
 											'rows'=>$rows,
 											'prinRowsName'=>$prinRowsName,
 											'csvHeader'=>$csvHeader,
-											'csvFooter_1'=>$csvFooter_1,
-											'csvFooter_2'=>$csvFooter_2,
+											// 'csvFooter_1'=>$csvFooter_1,
+											// 'csvFooter_2'=>$csvFooter_2,
 											));
 
 											// echo"calling the dhx load sucess";

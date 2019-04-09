@@ -5,7 +5,9 @@ class Dhxload
 	public $rows  = NULL;
 	public $xmlData =NULL;
 
-	public $totalOperCellCount=array("NTC "=>0,"AXIATA "=>0,"SMART "=>0);//a space is required after each key;
+	public $totalOperCellCount=array("NTC "=>0,"AXIATA "=>0,"SMART "=>0);//a space 
+	// is required after each key;
+	
 
 	public function __get($var){
 		return get_instance()->$var;
@@ -63,6 +65,8 @@ class Dhxload
 					$axiata= array_keys($this->totalOperCellCount)[1];
 					$smart= array_keys($this->totalOperCellCount)[2];
 
+
+
 					$this->data->$ntc = NULL;
 					$this->data->$axiata = NULL;
 					$this->data->$smart = NULL;
@@ -80,7 +84,6 @@ class Dhxload
 					$rowCsv.="".$this->data->$ntc.",".$this->data->$axiata.",".$this->data->$smart.",";
 					
 				}else{
-				// echo"     ".$this->data->$var;
 					$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 				}
 			}
@@ -170,6 +173,24 @@ class Dhxload
 			// echo"<br><br><br>".$this->getCsv($rowCount);
 			$csvData .= $this->getCsv($rowCount);
 		}
+
+		$ntc= array_keys($this->totalOperCellCount)[0];
+		$axiata= array_keys($this->totalOperCellCount)[1];
+		$smart= array_keys($this->totalOperCellCount)[2];
+
+		// exit();
+		$csvFooter=
+			 "\r\n"."\r\n".",TOTAL,".$this->totalOperCellCount[$ntc].",".$this->totalOperCellCount[$axiata].",".$this->totalOperCellCount[$smart].
+
+			"\r\n"."\r\n"."Total Records:".$rowCount.
+
+			"\r\n"."\r\n"."Report Generated on:".date('l jS  F Y h:i:s A');
+			;
+
+		$csvData.=$csvFooter;
+
+
+		// echo "csvFooter".$csvFooter;
 		// exit();
 		// $csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
 		// echo $csvData;
