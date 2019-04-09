@@ -55,7 +55,9 @@ class Dhxload
 				if($var=="fld_int_ondate"){
 					//convert milliseconds to seconds then to date
 					$this->data->$var=date('d F, Y h:i A',$this->data->$var);
-				}if($var="fld_int_cell_no"){
+					$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
+
+				}if($var=="fld_int_cell_no"){
 
 					$ntc= array_keys($this->totalOperCellCount)[0];
 					$axiata= array_keys($this->totalOperCellCount)[1];
@@ -73,12 +75,14 @@ class Dhxload
 						$this->totalOperCellCount[$operator]+=$cellCount;
 						
 					}
-					echo"ntc:".$this->data->$ntc.","."axiata:",$this->data->$axiata.","."smart:".$this->data->$smart;
-					// print_r($cellInfo);
-					// exit("<br>termination");
-				}
+
+					//create the row
+					$rowCsv.="".$this->data->$ntc.",".$this->data->$axiata.",".$this->data->$smart.",";
+					
+				}else{
 				// echo"     ".$this->data->$var;
-				$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
+					$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
+				}
 			}
 		}
 		// exit();
@@ -167,8 +171,10 @@ class Dhxload
 			$csvData .= $this->getCsv($rowCount);
 		}
 		// exit();
-		$csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
+		// $csvData.=$data['csvFooter_1'].$rowCount.$data['csvFooter_2'];
 		// echo $csvData;
+
+		// echo"<br><br>.......total<br>ntc:".$this->totalOperCellCount["NTC "]."axiata:".$this->totalOperCellCount["AXIATA "]."smart:".$this->totalOperCellCount["SMART "];
 		// exit();
 		return $csvData;
 
