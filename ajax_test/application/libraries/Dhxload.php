@@ -11,7 +11,9 @@ class Dhxload
 		return (isset($this->data->$name))?$this->data->$name:FALSE;
 	}
 	public function set_value($name, $value){
+
 		$this->data->$name = $value;
+
 	}
 
 	// public function 
@@ -36,25 +38,22 @@ class Dhxload
 
 
 	public function getCsv(){
-		// echo"<br><br>";
-		// echo"this->rows:".$this->rows;
-		// exit();
+		
 		$row = explode(',',$this->rows);
 		$rowXml = '';
 		for($i=0; $i < sizeof($row);$i++){
 			if($i>0){
-
-
-
 				$var = $row[$i];
+				if($var=="fld_int_ondate"){
+					//convert milliseconds to seconds then to date
+					$this->data->$var=date('d F, Y',$this->data->$var);
+				}
+				// echo"     ".$this->data->$var;
 				$rowXml .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 			}
 		}
-		// echo "<br>..................".$rowXml;
-		// exit(); 
-		$ret = trim($rowXml,',')."\r\n";
-		// echo"ret:".$ret;
 		// exit();
+		$ret = trim($rowXml,',')."\r\n";
 		return $ret;
 	}
 	/*This function loads the dhtmlx grid dynamically , by this function very heavy data loading in dhtmlx is possible
