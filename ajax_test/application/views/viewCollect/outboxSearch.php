@@ -71,11 +71,11 @@ $('#outboxsearch form').submit(function(e) {
 	sessionStorage.setItem("dateRangeTill",till);
 	
 	// console.log("$(this).serialize()",$(this).serialize());
-	// obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
-	// 	console.log("ajax returned successfully with: ",e);
+	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
+		console.log("ajax returned successfully with: ",e);
 		
-	// 	if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
-	// } );//default 
+		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
+	} );//default 
 });
 </script>
 <style>

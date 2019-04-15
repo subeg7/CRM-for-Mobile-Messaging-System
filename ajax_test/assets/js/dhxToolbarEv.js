@@ -311,14 +311,23 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 	}
 
 	else if(id=='excel_outbox'){
-			searchStart = sessionStorage.getItem("dateRangeStart");
-			searchTill = sessionStorage.getItem("dateRangeTill");
-			// console.log(" generate report start:",c," till:",sessionStorage.getItem("dateRangeTill"));
 
-		var res = obj.dhx_ajax('common_c/rdyDownload');
+		// //get session values
+		searchStart = sessionStorage.getItem("dateRangeStart");
+		searchTill = sessionStorage.getItem("dateRangeTill");
 
-		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
-		window.open('button_c/test/download?id='+res+"&searchStart="+searchStart+"&searchTill="+searchTill);
+		if(searchStart ==null || searchTill ==null ){
+			obj.message_show('Please Search the messages first' ,'error');
+		}else{
+
+			window.sessionStorage.clear();
+
+
+			var res = obj.dhx_ajax('common_c/rdyDownload');
+
+			if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
+			window.open('button_c/test/download?id='+res+"&searchStart="+searchStart+"&searchTill="+searchTill);
+		}
 	}
 
 	
