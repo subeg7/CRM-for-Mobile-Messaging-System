@@ -28,68 +28,68 @@ class Button_m	 extends CI_Model
 		$dateRangeStart = $data['searchStart'];
 		$dateRangeTill = $data['searchTill'];
 
+		$userType=NULL;
 			if($userid==1){
-				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company,r.company AS rcompany FROM outbox o INNER JOIN users u INNER JOIN users r WHERE o.fld_reseller_id=r.id AND o.fld_int_userid=u.id AND o.fld_int_ondate BETWEEN 0'." AND ".time()." ORDER BY o.fld_int_ondate DESC";
-				$rows = 'fld_int_id,xcompany,fld_chr_sender,fld_chr_message,fld_user_data';
-			}
-			elseif(in_array('USER_MANAGE',$data['privileges'])){
-				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company FROM outbox o INNER JOIN users u WHERE o.fld_reseller_id='.$userid.' AND u.id = o.fld_int_userid AND o.fld_int_ondate BETWEEN 0 AND '.time()." ORDER BY o.fld_int_ondate DESC";
-				$rows = 'fld_int_id,company,fld_chr_sender,fld_chr_message,fld_user_data';
-			}
-			elseif(!in_array('USER_MANAGE',$data['privileges'])){
-
+				//ADMIN code
 				$query = "select fld_chr_sender as fld_chr_sender,fld_chr_message as fld_chr_message,  fld_msg_number as fld_msg_number, fld_int_cell_no  as fld_int_cell_no,fld_int_ondate as fld_int_ondate
 
-					from outbox o
+					from outbox 
+
+				 	where fld_int_ondate between ".$dateRangeStart." and ".$dateRangeTill;
+
+				$rows = 'fld_int_id,fld_chr_sender,fld_int_cell_no,fld_chr_message,fld_msg_number,fld_int_ondate';
+				$prinRowsName = 'S.N,Sender Id,NTC,AXIATA,SMARTCELL,Message,Char Count,Date';
+				$userType="ADMIN";
+			}
+			elseif(in_array('USER_MANAGE',$data['privileges'])){
+				//RESELLER code
+				$query = "select fld_chr_sender as fld_chr_sender,fld_chr_message as fld_chr_message,  fld_msg_number as fld_msg_number, fld_int_cell_no  as fld_int_cell_no,fld_int_ondate as fld_int_ondate
+
+					from outbox 
+
+				 	where fld_reseller_id=".$userid.
+
+				 	" and fld_int_ondate between ".$dateRangeStart." and ".$dateRangeTill;
+
+				$rows = 'fld_int_id,fld_chr_sender,fld_int_cell_no,fld_chr_message,fld_msg_number,fld_int_ondate';
+				$prinRowsName = 'S.N,Sender Id,NTC,AXIATA,SMARTCELL,Message,Char Count,Date';
+				$userType="RESELLER";
+
+			}
+			elseif(!in_array('USER_MANAGE',$data['privileges'])){
+				//CLIENT code
+				$query = "select fld_chr_sender as fld_chr_sender,fld_chr_message as fld_chr_message,  fld_msg_number as fld_msg_number, fld_int_cell_no  as fld_int_cell_no,fld_int_ondate as fld_int_ondate
+
+					from outbox 
 
 				 	where fld_int_userid=".$userid.
 
 				 	" and fld_int_ondate between ".$dateRangeStart." and ".$dateRangeTill;
 
-
-				 	// ".$dateRangeStart." and ".$dateRangeTill."order by fld_int_ondate desc";
-
-
-				 	
-
-				// exit($query);
-				// $rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';//default
 				$rows = 'fld_int_id,fld_chr_sender,fld_int_cell_no,fld_chr_message,fld_msg_number,fld_int_ondate';
 				$prinRowsName = 'S.N,Sender Id,NTC,AXIATA,SMARTCELL,Message,Char Count,Date';
-				// $prinRowsName = 'Sender Id,Message,Type/Count,Cell No.,Date,No-user_manage_priv';
+				$userType="CLIENT";
+
 
 			}
-
-			// echo $query;
-			// exit();
-
 
 
 		if($data['type']=='download' || $data['type']=='search'){
 			$like = '';
 			$query =$query.$like;
 
-			// $fileName 
 
 			$folderName = $this->curd_m->getData('users',array('id'=>$this->session->userdata('userId') ),'object');
 
 			
 
-			// print_r($this->session->userdata('address'));exit();
 			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,".date('l jS  F Y',$dateRangeStart)."\r\n"
-				.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".//comma in address mutates the to be downloaded CSV Badly
-				"Phone:".$this->session->userdata('contact_number').",,,To,".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
+				.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".
+				"Phone:".$this->session->userdata('contact_number').",,,To,".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n".$userType." Bulk Sms Outbox Report"."\r\n"."\r\n";
 
-				// echo"".$csvHeader;
-				// exit();
+				
 
 			date_default_timezone_set("Asia/Kathmandu");
-
-			// $csvFooter_1 ="\r\n"."\r\n".",,,,,Total Records:";
-			// $csvFooter_2="\r\n"."\r\n"."Report Generated on:".date('l jS  F Y h:i:s A');
-
-			// echo"footer_2".$csvFooter_2;exit();
-
 
 
 			if($data['type']=='download'){
@@ -99,15 +99,9 @@ class Button_m	 extends CI_Model
 											'rows'=>$rows,
 											'prinRowsName'=>$prinRowsName,
 											'csvHeader'=>$csvHeader,
-											// 'csvFooter_1'=>$csvFooter_1,
-											// 'csvFooter_2'=>$csvFooter_2,
 											));
 
-											// echo"calling the dhx load sucess";
-											// 	exit("sdfs");
-
-
-				
+											
 
 
 

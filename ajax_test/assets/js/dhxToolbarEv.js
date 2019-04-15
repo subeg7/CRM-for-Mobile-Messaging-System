@@ -317,7 +317,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 		searchTill = sessionStorage.getItem("dateRangeTill");
 
 		if(searchStart ==null || searchTill ==null ){
-			obj.message_show('Please Search the messages first' ,'error');
+			obj.message_show('Please select date range from Search Buton' ,'error');
 		}else{
 
 			window.sessionStorage.clear();
