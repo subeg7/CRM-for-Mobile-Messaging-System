@@ -8,7 +8,6 @@
                 <td><input type="text" name="userid" id="userid"/></td>
             </tr>';
 			// }//buttonDebug
-
 		?>
         	<tr>
             	<td>Number</td>
@@ -43,7 +42,6 @@ obj.create_dhx_calander({ // adding calander in toolbar button :ID = fromDate
 				param: [ 'fromCredit','tillCredit']
 			});
 $('#outboxsearch form').submit(function(e) {
-
 	// console.log("searching the outbox");
     e.preventDefault();
 	var start = $('#fromCredit').val();
@@ -66,15 +64,19 @@ $('#outboxsearch form').submit(function(e) {
 		return;
 	}
 
+	// store the start-till date range in the session
+	console.log("Session Init with Message:start:",start," till:",till);
+	window.sessionStorage.clear();
+	sessionStorage.setItem("dateRangeStart",start);
+	sessionStorage.setItem("dateRangeTill",till);
+	
 	// console.log("$(this).serialize()",$(this).serialize());
-	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
-
-		console.log("ajax returned successfully with: ",e);
+	// obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderOutbox/search?object=grid&"+$(this).serialize(),function(e){
+	// 	console.log("ajax returned successfully with: ",e);
 		
-		if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
-	} );
+	// 	if(obj.grid['dhxDynFeild_t'].getUserData( "","session")==="message") obj.message_show(obj.grid['dhxDynFeild_t'].getUserData( "","message"),'error');
+	// } );//default 
 });
-
 </script>
 <style>
 #outboxsearch{ -webkit-box-sizing: border-box; -moz-box-sizing: border-box; padding:10px;
@@ -90,5 +92,4 @@ box-sizing: border-box;}
 #outboxsearch table tr td{ padding:3px 8px;}
 #outboxsearch form > p { text-align:right;  margin-top:13px;}
 #outboxsearch form > p input:last-child{ margin-left:10px;}
-
 </style>

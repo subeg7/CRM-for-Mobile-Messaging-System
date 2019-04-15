@@ -230,6 +230,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 			obj.dhx_win({ id:id,height:200,width:300,modal:false,header:'Search Credit History',file_l:'common_c/load_View/creditlog'});
 		}
 		else if(obj.prev_id == 'sentbox'){
+			console.log("toolbar message:outbox search button");
 			obj.dhx_win({ id:id,height:260,width:320,modal:false,header:'Search Sent History',file_l:'common_c/load_View/sentbox'});
 		}
 		else if(obj.prev_id == 'smsreport'){
@@ -254,7 +255,8 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 				// obj.grid['dhxDynFeild_t'].toExcel("Grid_Excel/generate.php");
 
 		}else if(obj.prev_id =='sentbox'){
-			console.log(" sentbox toolbar triggered");
+
+			// console.log(" generate report start:",sessionStorage.getItem("key")," till:",);
 
 			obj.grid['dhxDynFeild_t'].clearAndLoad('button_c/test/'+obj.prev_id,function(e){
 				console.log("sentbox grid loaded");
@@ -309,11 +311,12 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 	}
 
 	else if(id=='excel_outbox'){
-		console.log("this is ",obj.prev_id, " excel button");
+			console.log(" generate report start:",sessionStorage.getItem("dateRangeStart")," till:",sessionStorage.getItem("dateRangeTill"));
+
 		var res = obj.dhx_ajax('common_c/rdyDownload');
 
 		if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
-		window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
+// /		window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
 	}
 
 	

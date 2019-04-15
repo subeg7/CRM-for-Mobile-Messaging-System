@@ -26,11 +26,13 @@ $('#smssearch form').submit(function(e) {
 	var start = $('#fromCredit').val();
 	var arr =[];
 	if(start !==''){
+		console.log("start:",start);
 		start = parseInt(new Date(start).getTime()/1000);
 		arr.push('searchStart='+(start).toString());
 	}
 	var till = $('#tillCredit').val();
 	if(till !==''){
+		console.log("end:",till);
 		till = parseInt(new Date(till).getTime()/1000)+((60*60*24)-1);
 		arr.push('searchTill='+(till).toString());
 	}
@@ -42,6 +44,15 @@ $('#smssearch form').submit(function(e) {
 		obj.message_show('** Warning : One of the date field is empty','error');
 		return;
 	}
+
+
+	// //store the start-till date range in the session
+	// window.sessionStorage.clear();
+	// sessionStorage.setItem("dateRangeStart",start);
+	// sessionStorage.setItem("dateRangeTill",till);
+	
+
+
 
 	obj.grid['dhxDynFeild_t'].clearAndLoad( "report_c/renderSmsTransaction/search?object=grid&"+$(this).serialize(),function(e){
 	/*obj.searchQuery = (obj.grid['dhxDynFeild_t'].getUserData( "","query")).split('__').join('&');
