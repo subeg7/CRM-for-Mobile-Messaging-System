@@ -17,6 +17,8 @@ class Button_c extends ESY_Controller {
 	// }
 
 	public function test($data=NULL){
+
+		// echo "start:".$this->input->get('searchStart')." till: ".$this->input->get('searchTill');
 		if(!$this->vas->verifyPrivillages(array('PUSH','USER_MANAGE'),$this->userPrivileges )){ die('**Warning:Not Sufficient Privileges');}
 
 		if($data=='search' || $data =='download'){
@@ -45,7 +47,9 @@ class Button_c extends ESY_Controller {
 												'sdate'=>($this->input->get('searchStart'))?$this->input->get('searchStart'):NULL,
 												'tdate'=>($this->input->get('searchTill'))?$this->input->get('searchTill'):NULL,
 												'privileges' => $this->userPrivileges,
-												'type'=>"download"
+												'type'=>"download",
+												'searchStart'=>$this->input->get('searchStart'),
+												'searchTill'=>$this->input->get('searchTill')
 												));
 
 	}

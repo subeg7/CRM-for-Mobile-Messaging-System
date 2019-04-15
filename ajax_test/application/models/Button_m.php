@@ -25,6 +25,9 @@ class Button_m	 extends CI_Model
 		$this->priv = $data['privileges'];
 		$searchArr = array();
 
+		$dateRangeStart = $data['searchStart'];
+		$dateRangeTill = $data['searchTill'];
+
 			if($userid==1){
 				$query ='SELECT o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company,r.company AS rcompany FROM outbox o INNER JOIN users u INNER JOIN users r WHERE o.fld_reseller_id=r.id AND o.fld_int_userid=u.id AND o.fld_int_ondate BETWEEN 0'." AND ".time()." ORDER BY o.fld_int_ondate DESC";
 				$rows = 'fld_int_id,xcompany,fld_chr_sender,fld_chr_message,fld_user_data';
@@ -34,19 +37,20 @@ class Button_m	 extends CI_Model
 				$rows = 'fld_int_id,company,fld_chr_sender,fld_chr_message,fld_user_data';
 			}
 			elseif(!in_array('USER_MANAGE',$data['privileges'])){
-				// $reseller_id = 39;
-				// echo "user id is:".$userid;
-				// $query ='SELECT u.id as user_id , o.fld_int_id AS fld_int_id,o.fld_int_cell_no AS fld_int_cell_no,o.eom_track_id AS eom_track_id,o.fld_chr_sender AS fld_chr_sender,o.fld_chr_message AS fld_chr_message,o.fld_msg_number AS fld_msg_number,o.messageType AS messageType,o.fld_int_ondate AS fld_int_ondate,o.fld_user_data AS fld_user_data,u.company AS company 
-
-				// 	FROM outbox o INNER JOIN users u 
-
-				// 	WHERE o.fld_int_userid='.$userid.' AND  o.fld_int_ondate BETWEEN 0 AND '.time()." ORDER BY o.fld_int_ondate DESC";
 
 				$query = "select fld_chr_sender as fld_chr_sender,fld_chr_message as fld_chr_message,  fld_msg_number as fld_msg_number, fld_int_cell_no  as fld_int_cell_no,fld_int_ondate as fld_int_ondate
 
-					from outbox
+					from outbox o
 
-				 	where fld_int_userid=".$userid;
+				 	where fld_int_userid=".$userid.
+
+				 	" and fld_int_ondate between ".$dateRangeStart." and ".$dateRangeTill;
+
+
+				 	// ".$dateRangeStart." and ".$dateRangeTill."order by fld_int_ondate desc";
+
+
+				 	
 
 				// exit($query);
 				// $rows = 'fld_int_id,fld_chr_sender,fld_chr_message,fld_user_data';//default
@@ -72,9 +76,9 @@ class Button_m	 extends CI_Model
 			
 
 			// print_r($this->session->userdata('address'));exit();
-			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,Tuesday 02 March 2019"."\r\n"
+			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,".date('l jS  F Y',$dateRangeStart)."\r\n"
 				.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".//comma in address mutates the to be downloaded CSV Badly
-				"Phone:".$this->session->userdata('contact_number').",,,To,Wednesday 03 March 2019"."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
+				"Phone:".$this->session->userdata('contact_number').",,,To,".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n"."Bulk Sms Outbox Report"."\r\n"."\r\n";
 
 				// echo"".$csvHeader;
 				// exit();
