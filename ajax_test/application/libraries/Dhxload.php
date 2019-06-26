@@ -83,6 +83,10 @@ class Dhxload
 					//create the row
 					$rowCsv.="".$this->data->$ntc.",".$this->data->$axiata.",".$this->data->$smart.",";
 					
+				}else if($var =="fld_msg_number"){
+					$charCountArr = $this->data->$var;
+					$exploded= explode("-",$charCountArr);
+					$rowCsv.='"'.$exploded[0]." message & ".$exploded[1]." chars remaining".'"'.",";
 				}else{
 					$rowCsv .= '"'.(string) strip_tags($this->data->$var).'"'.",";
 				}

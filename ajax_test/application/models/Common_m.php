@@ -176,7 +176,7 @@ class Common_m extends CI_Model
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Last-Modified: '.gmdate ('D, d M Y H:i:s', filemtime ($filePath.'.csv')).' GMT');
 		header('Cache-Control: private',false);
-		header('Content-Type: text/csv');
+		header('Content-Type: application/csv;charset=UTF-16');
 		header('Content-Disposition: attachment; filename="'.basename($filePath.'.csv').'"');
 		header('Content-Transfer-Encoding: binary');
 		header('Content-Length: '.filesize($filePath.'.csv'));	// provide file size

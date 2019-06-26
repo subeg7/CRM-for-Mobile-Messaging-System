@@ -258,7 +258,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 
 			// console.log(" generate report start:",sessionStorage.getItem("key")," till:",);
 
-			obj.grid['dhxDynFeild_t'].clearAndLoad('button_c/test/'+obj.prev_id,function(e){
+			obj.grid['dhxDynFeild_t'].clearAndLoad('Outbox_Report_c/download/'+obj.prev_id,function(e){
 				console.log("sentbox grid loaded");
 				// obj.grid['dhxDynFeild_t'].toExcel("https://dhtmlxgrid.appspot.com/export/excel");
 
@@ -305,7 +305,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 			window.open('push_c/renderSenderId/download?id='+res+'&'+obj.searchQuery,'_blank');
 		}else if(obj.prev_id == 'creditlog'){
 			console.log("call the ajax to download");
-			window.open('button_c/test/download?id='+res+'&'+obj.searchQuery,'_blank');
+			window.open('Outbox_Report_c/download/download?id='+res+'&'+obj.searchQuery,'_blank');
 		}
 
 	}
@@ -326,7 +326,7 @@ obj.tool['toolbar'].attachEvent('onClick',function(id){// start of toolbar event
 			var res = obj.dhx_ajax('common_c/rdyDownload');
 
 			if(res=='fail' && res ==''){  obj.message_show('**Error Found in download' ,'error');}
-			window.open('button_c/test/download?id='+res+"&searchStart="+searchStart+"&searchTill="+searchTill);
+			window.open('Outbox_Report_c/download/download?id='+res+"&searchStart="+searchStart+"&searchTill="+searchTill);
 		}
 	}
 
