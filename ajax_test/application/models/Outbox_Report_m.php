@@ -87,9 +87,10 @@ class Outbox_Report_m	 extends CI_Model
 			// 	.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".
 			// 	"Phone:".$this->session->userdata('contact_number').",,,To,".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n Type of Report: ".$userType." Bulk Sms Outbox Report"."\r\n"."\r\n";
 
-			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username').", , ,From,".date('l jS  F Y',$dateRangeStart)."\r\n"
+			$csvHeader = "\r\n"."\r\n"."\r\n"."UserName: ".$this->session->userdata('username')."\r\n"
+				.'Company :'.$this->session->userdata('company')."\r\n"
 				.'Address :'. str_replace(","," ",$this->session->userdata('address')).","."\r\n".
-				"Phone:".$this->session->userdata('contact_number').",,,To,".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n Type of Report: ".$userType." Bulk Sms Outbox Report"."\r\n"."\r\n";
+				"Phone:".$this->session->userdata('contact_number')."\r\n"."\r\n Type of Report: ".$userType." Bulk Sms Outbox Report"."\r\n"."\r\n"."Report From : ".date('l jS  F Y',$dateRangeStart)."\r\n"."Report Till    :  ".date('l jS  F Y',$dateRangeTill)."\r\n"."\r\n";
 
 				
 
